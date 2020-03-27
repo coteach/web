@@ -7,11 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from './material-module';
 import { ScaffoldComponent } from './scaffold/scaffold.component';
+import { MyPlanComponent } from './my-plan/my-plan.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ScaffoldComponent,
+    MyPlanComponent
   ],
   imports: [
     BrowserModule,

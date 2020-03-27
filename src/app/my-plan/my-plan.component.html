@@ -1,0 +1,45 @@
+<mat-card *ngFor="let plan of myPlans">
+    <mat-card-header>
+        <mat-card-title>{{plan}}</mat-card-title>
+
+        <mat-card-subtitle>
+            <mat-icon>schedule</mat-icon>
+
+            changed 16 minutes ago
+        </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+        <mat-chip-list>
+            <mat-chip>小學</mat-chip>
+            <mat-chip>一年級</mat-chip>
+        </mat-chip-list>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+        <button mat-icon-button disabled>
+            <mat-icon>link</mat-icon>
+        </button>
+
+        <button mat-icon-button disabled>
+            <mat-icon>group_add</mat-icon>
+        </button>
+
+        <button mat-icon-button disabled>
+            <mat-icon>cloud_download</mat-icon>
+        </button>
+
+        <button mat-icon-button disabled>
+            <mat-icon>visibility</mat-icon>
+        </button>
+
+        <button mat-icon-button disabled>
+            <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-icon-button disabled>
+            <mat-icon>delete</mat-icon>
+        </button>
+    </mat-card-actions>
+
+</mat-card>
