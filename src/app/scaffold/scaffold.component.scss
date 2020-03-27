@@ -1,0 +1,32 @@
+@import '~@angular/material/theming';
+
+::ng-deep app-scaffold {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+mat-toolbar {
+    @include mat-elevation(4);
+}
+
+mat-sidenav-container {
+    flex: 1;
+
+    mat-sidenav {
+        width: 260px;
+
+        button {
+            margin-top: 16px;
+            margin-left: 16px;
+        }
+    }
+
+    mat-sidenav-content {
+        padding: 16px;
+    }
+}
