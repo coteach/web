@@ -1,11 +1,11 @@
 <mat-card *ngFor="let plan of myPlans">
     <mat-card-header>
-        <mat-card-title>{{plan}}</mat-card-title>
+        <mat-card-title>{{plan.title}}</mat-card-title>
 
         <mat-card-subtitle>
             <mat-icon>schedule</mat-icon>
 
-            changed 16 minutes ago
+            changed at {{plan.lastchangeAt.toDateString()}}
         </mat-card-subtitle>
     </mat-card-header>
 

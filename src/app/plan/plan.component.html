@@ -2,6 +2,14 @@
     <button mat-icon-button (click)="close()">
         <mat-icon>close</mat-icon>
     </button>
+
+    <mat-form-field>
+        <input matInput [(ngModel)]="title">
+    </mat-form-field>
+
+    <span class="spacer"></span>
+
+    <button mat-raised-button color="accent" (click)="save()">Save</button>
 </mat-toolbar>
 
 <editor #editor [initialValue]="markdown"></editor>
