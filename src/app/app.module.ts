@@ -8,12 +8,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material-module';
 import { ScaffoldComponent } from './scaffold/scaffold.component';
 import { MyPlanComponent } from './my-plan/my-plan.component';
+import { PlanComponent } from './plan/plan.component';
+import { EditorComponent } from './editor/editor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ScaffoldComponent,
-    MyPlanComponent
+    MyPlanComponent,
+    PlanComponent,
+    EditorComponent,
   ],
   imports: [
     BrowserModule,
