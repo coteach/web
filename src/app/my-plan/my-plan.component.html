@@ -33,11 +33,11 @@
             <mat-icon>visibility</mat-icon>
         </button>
 
-        <button mat-icon-button disabled>
+        <button mat-icon-button [routerLink]="[routerLink.Plan, plan.id]">
             <mat-icon>edit</mat-icon>
         </button>
 
-        <button mat-icon-button disabled>
+        <button mat-icon-button (click)="deletePlan(plan.id)">
             <mat-icon>delete</mat-icon>
         </button>
     </mat-card-actions>

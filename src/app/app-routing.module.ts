@@ -15,6 +15,7 @@ const routes: Routes = [
     ]
   },
   { path: Path.Plan, component: PlanComponent },
+  { path: '**', redirectTo: Path.MyPlan },
 ];
 
 @NgModule({

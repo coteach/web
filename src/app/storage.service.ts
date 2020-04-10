@@ -11,7 +11,7 @@ export class StorageService {
   getPlans(): Plan[] {
     let result = this.get("plans");
     if (result == null) {
-      return null;
+      return [];
     }
 
     return Plan.fromArray(result);

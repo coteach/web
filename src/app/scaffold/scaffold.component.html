@@ -4,7 +4,7 @@
 
 <mat-sidenav-container>
     <mat-sidenav opened mode="side">
-        <button mat-raised-button color="accent" [routerLink]="routerLink.Plan">
+        <button mat-raised-button color="accent" (click)="newPlan()">
             <mat-icon>add</mat-icon> New
         </button>
 

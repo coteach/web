@@ -1,43 +1,61 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { EditorComponent } from '../editor/editor.component';
 import { StorageService } from '../storage.service';
 import { Plan } from '../models/plan';
+import { ActivatedRoute } from '@angular/router';
+
+export declare type Params = {
+  id: string;
+};
 
 @Component({
   selector: 'app-plan',
   templateUrl: './plan.component.html',
   styleUrls: ['./plan.component.scss']
 })
-export class PlanComponent implements OnInit {
+export class PlanComponent implements OnInit, AfterViewInit {
   constructor(
+    private route: ActivatedRoute,
     private location: Location,
     private storage: StorageService,
   ) { }
 
   @ViewChild('editor', { static: false }) editor: EditorComponent;
 
-  title: string = "Untitled";
+  plan: Plan = new Plan();
 
-  get plan(): Plan {
-    var result = new Plan();
-    result.content = this.editor.getMarkdown();
-    result.lastchangeAt = new Date();
-    result.title = this.title;
+  ngOnInit(): void {
+    var initPlan = (params: Params) => {
+      this.plan = this.storage.getPlans().find(plan => plan.id == params.id);
 
-    return result;
+      if (this.plan == null) {
+        this.plan = new Plan({
+          id: params.id,
+          title: "Untitled",
+          lastchangeAt: new Date(),
+        });
+      }
+    }
+
+    this.route.params.subscribe(initPlan);
   }
 
-  ngOnInit() { }
+  ngAfterViewInit(): void {
+    this.editor.focus()
+  }
 
   close() {
     this.location.back();
   }
 
   save() {
-    var plans = this.storage.getPlans();
+    this.plan.content = this.editor.getMarkdown();
+    this.plan.lastchangeAt = new Date();
+
+    var plans = this.storage.getPlans().filter(value => value.id != this.plan.id);
+
     plans.push(this.plan);
-    console.log(plans);
     this.storage.setPlans(plans);
 
     this.close();

@@ -11,6 +11,7 @@ import { ScaffoldComponent } from './scaffold/scaffold.component';
 import { MyPlanComponent } from './my-plan/my-plan.component';
 import { PlanComponent } from './plan/plan.component';
 import { EditorComponent } from './editor/editor.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { EditorComponent } from './editor/editor.component';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,

@@ -4,7 +4,7 @@
     </button>
 
     <mat-form-field>
-        <input matInput [(ngModel)]="title">
+        <input matInput [(ngModel)]="plan.title">
     </mat-form-field>
 
     <span class="spacer"></span>
@@ -12,4 +12,4 @@
     <button mat-raised-button color="accent" (click)="save()">Save</button>
 </mat-toolbar>
 
-<editor #editor [initialValue]="markdown"></editor>
+<editor #editor [initialValue]="plan.content"></editor>
