@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-    <button mat-icon-button (click)="close()">
+    <button mat-icon-button (click)="save()">
         <mat-icon>close</mat-icon>
     </button>
 
@@ -8,8 +8,6 @@
     </mat-form-field>
 
     <span class="spacer"></span>
-
-    <button mat-raised-button color="accent" (click)="save()">Save</button>
 </mat-toolbar>
 
 <editor #editor [initialValue]="plan.content"></editor>

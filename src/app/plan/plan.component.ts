@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, HostListener } from '@angular/core';
 import { Location } from '@angular/common';
 import { EditorComponent } from '../editor/editor.component';
 import { StorageService } from '../storage.service';
@@ -45,11 +45,8 @@ export class PlanComponent implements OnInit, AfterViewInit {
     this.editor.focus()
   }
 
-  close() {
-    this.location.back();
-  }
-
-  save() {
+  @HostListener('window:beforeunload')
+  save(): void {
     this.plan.content = this.editor.getMarkdown();
     this.plan.lastchangeAt = new Date();
 
@@ -58,7 +55,7 @@ export class PlanComponent implements OnInit, AfterViewInit {
     plans.push(this.plan);
     this.storage.setPlans(plans);
 
-    this.close();
+    this.location.back();
   }
 }
 
