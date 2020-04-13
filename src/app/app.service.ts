@@ -13,7 +13,7 @@ export class AppService {
 
 
   getNew(): Promise<string> {
-    let url = "http://codimd.schl.tw/api/new";
+    let url = "https://codimd.schl.tw/api/new";
     let getNewId = (error: HttpErrorResponse) => {
       return error.url.split('/').pop();
     };
