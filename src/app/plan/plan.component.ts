@@ -21,7 +21,7 @@ export class PlanComponent implements OnInit, AfterViewInit {
     private storage: StorageService,
   ) { }
 
-  @ViewChild('editor', { static: false }) editor: EditorComponent;
+  @ViewChild('editor') editor: EditorComponent;
 
   plan: Plan = new Plan();
 
