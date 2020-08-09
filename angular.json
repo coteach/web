@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "planhub"
+  "defaultProject": "planhub",
+  "cli": {
+    "analytics": "ebf06a21-7957-4920-8ceb-9cac652e46a7"
+  }
 }
