@@ -22,11 +22,11 @@ const mockPlans = <Plan[]>[
 ];
 
 @Component({
-  selector: 'app-my-plan',
-  templateUrl: './my-plan.component.html',
-  styleUrls: ['./my-plan.component.scss']
+  selector: 'app-my-plans',
+  templateUrl: './my-plans.component.html',
+  styleUrls: ['./my-plans.component.scss']
 })
-export class MyPlanComponent implements OnInit {
+export class MyPlansComponent implements OnInit {
   constructor(private storage: StorageService
   ) { }
 
