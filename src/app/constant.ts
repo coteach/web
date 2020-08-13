@@ -1,12 +1,12 @@
 
 export enum Path {
-    MyPlan = 'my-plan',
+    SharedPlans = 'shared-plans',
     MyPlans = 'my-plans',
     Plan = 'plan/:id',
 }
 
 export enum RouterLink {
-    MyPlan = '/my-plan',
+    SharedPlans = '/shared-plans',
     MyPlans = '/my-plans',
     Plan = '/plan',
 }

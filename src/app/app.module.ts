@@ -12,6 +12,7 @@ import { MyPlansComponent } from './my-plans/my-plans.component';
 import { PlanComponent } from './plan/plan.component';
 import { EditorComponent } from './editor/editor.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedPlansComponent } from './shared-plans/shared-plans.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     MyPlansComponent,
     PlanComponent,
     EditorComponent,
+    SharedPlansComponent,
   ],
   imports: [
     BrowserModule,

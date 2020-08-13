@@ -4,6 +4,7 @@ import { ScaffoldComponent } from './scaffold/scaffold.component';
 import { MyPlansComponent } from './my-plans/my-plans.component';
 import { PlanComponent } from './plan/plan.component';
 import { Path } from './constant';
+import { SharedPlansComponent } from './shared-plans/shared-plans.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,7 @@ const routes: Routes = [
     component: ScaffoldComponent,
     children: [
       { path: '', redirectTo: Path.MyPlans, pathMatch: 'full' },
+      { path: Path.SharedPlans, component: SharedPlansComponent },
       { path: Path.MyPlans, component: MyPlansComponent },
     ]
   },
