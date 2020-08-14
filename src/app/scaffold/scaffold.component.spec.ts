@@ -8,9 +8,9 @@ describe('ScaffoldComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ScaffoldComponent ]
+      declarations: [ScaffoldComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
