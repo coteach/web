@@ -1,18 +1,17 @@
-.mat-table {
-  width: 100%;
-  overflow: auto;
-  max-height: 500px;
-}
-
 table {
   width: 100%;
   overflow: auto;
-}
+  padding-bottom: 16px;
 
-tr.cdk-row {
-  cursor: pointer;
+  tr.cdk-row {
+    cursor: pointer;
 
-  &:hover {
-    background: whitesmoke;
+    &:hover {
+      background: whitesmoke;
+    }
+
+    td.mat-cell {
+      border-bottom-width: 0px;
+    }
   }
 }

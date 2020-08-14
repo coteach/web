@@ -37,4 +37,13 @@ export class ExtenalPlan {
     static fromArray(json): ExtenalPlan[] {
         return Object.values(json).map<ExtenalPlan>((p) => this.from(p));
     }
+
+    static fromGoogleSheet(json): ExtenalPlan[] {
+        return json.feed.entry.map(entry =>
+            new ExtenalPlan({
+                name: entry.gsx$name.$t,
+                link: entry.gsx$page.$t,
+                formats: "pdf"
+            }));
+    }
 }
