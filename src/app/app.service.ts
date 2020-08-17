@@ -15,7 +15,8 @@ export class AppService {
   getNew(): Promise<string> {
     let url = "https://codimd.schl.tw/api/new";
     let getNewId = (error: HttpErrorResponse) => {
-      return error.url.split('/').pop();
+      return Math.random().toString(16).slice(2);
+      // return error.url.split('/').pop();
     };
 
     return this.httpClient.get<string>(url)

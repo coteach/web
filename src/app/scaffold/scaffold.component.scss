@@ -12,6 +12,33 @@
 
 mat-toolbar {
     @include mat-elevation(4);
+
+    ::ng-deep .mat-form-field {
+        line-height: 1.9;
+        margin-bottom: -10px;
+        width: 600px;
+
+        .mat-form-field-flex {
+            margin-left: 108px;
+
+            &>.mat-form-field-infix {
+                padding: 4px 0px !important;
+            }
+
+            .mat-form-field-outline {
+                margin-top: 16px !important;
+                color: gray;
+            }
+
+            .mat-form-field-outline-thick {
+                color: gray;
+            }
+        }
+
+        input {
+            margin-left: 4px;
+        }
+    }
 }
 
 mat-sidenav-container {
@@ -27,6 +54,6 @@ mat-sidenav-container {
     }
 
     mat-sidenav-content {
-        padding: 16px;
+        padding: 0 16px;
     }
 }

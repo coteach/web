@@ -14,10 +14,18 @@ export class ScaffoldComponent {
   ) { }
 
   routerLink = RouterLink;
+  keyword = '';
 
   newPlan() {
     this.appService.getNew().then((id) => {
       this.router.navigate([RouterLink.Plan, id]);
     });
+  }
+
+  onSearch(): void {
+    let isKeywordEmpty = this.keyword.trim().length == 0;
+    if (isKeywordEmpty) return;
+
+    this.router.navigate([RouterLink.Search], { queryParams: { q: this.keyword } });
   }
 }
