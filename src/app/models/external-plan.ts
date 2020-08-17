@@ -1,6 +1,6 @@
 interface ExtenalPlanParams {
     name?: string;
-    link?: string;
+    page?: string;
     formats?: string;
     tags?: string;
 
@@ -26,7 +26,7 @@ export class ExtenalPlan {
     }
 
     name: string;
-    link: string;
+    page: string;
     formats: string;
     tags: string;
 
@@ -42,7 +42,7 @@ export class ExtenalPlan {
         return json.feed.entry.map(entry =>
             new ExtenalPlan({
                 name: entry.gsx$name.$t,
-                link: entry.gsx$page.$t,
+                page: entry.gsx$page.$t,
                 formats: "pdf"
             }));
     }

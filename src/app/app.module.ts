@@ -12,7 +12,7 @@ import { MyPlansComponent } from './my-plans/my-plans.component';
 import { PlanComponent } from './plan/plan.component';
 import { EditorComponent } from './editor/editor.component';
 import { HttpClientModule } from '@angular/common/http';
-import { SharedPlansComponent } from './shared-plans/shared-plans.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { SharedPlansComponent } from './shared-plans/shared-plans.component';
     MyPlansComponent,
     PlanComponent,
     EditorComponent,
-    SharedPlansComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
