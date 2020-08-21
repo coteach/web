@@ -1,16 +1,93 @@
-<table mat-table [dataSource]="extenalPlans" class="mat-elevation-z8">
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let extenalPlan" (click)="openPage(extenalPlan)">
-            {{extenalPlan.name}}
-        </td>
-    </ng-container>
+<h3> Explore</h3>
 
-    <ng-container matColumnDef="formats">
-        <th mat-header-cell *matHeaderCellDef> Formats </th>
-        <td mat-cell *matCellDef="let extenalPlan"> {{extenalPlan.formats}} </td>
-    </ng-container>
+<!-- <mat-card *ngFor="let plan of myPlans">
+    <mat-card-header>
+        <mat-card-title>{{plan.title}}</mat-card-title>
 
-    <tr mat-header-row *matHeaderRowDef="columns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: columns;"></tr>
-</table>
+        <mat-card-subtitle>
+            <mat-icon>schedule</mat-icon>
+
+            changed at {{plan.lastchangeAt.toDateString()}}
+        </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+        <mat-chip-list>
+            <span>
+                <mat-icon>star_border</mat-icon> 1234
+            </span>
+            <span>
+                <mat-icon>alt_route</mat-icon> 1234
+            </span>
+
+            <mat-chip>小學</mat-chip>
+            <mat-chip>一年級</mat-chip>
+        </mat-chip-list>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+        <button mat-icon-button disabled>
+            <mat-icon>link</mat-icon>
+        </button>
+
+        <button mat-icon-button disabled>
+            <mat-icon>group_add</mat-icon>
+        </button>
+
+        <button mat-icon-button disabled>
+            <mat-icon>cloud_download</mat-icon>
+        </button>
+
+        <button mat-icon-button disabled>
+            <mat-icon>visibility</mat-icon>
+        </button>
+
+        <button mat-icon-button>
+            <mat-icon>star_border</mat-icon>
+        </button>
+
+        <button mat-icon-button>
+            <mat-icon>alt_route</mat-icon>
+        </button>
+
+        <button mat-icon-button [routerLink]="[routerLink.Plan, plan.id]">
+            <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-icon-button (click)="deletePlan(plan.id)">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </mat-card-actions>
+
+</mat-card> -->
+
+<mat-card *ngFor="let plan of plans">
+    <mat-card-header>
+        <mat-card-title>{{plan.title}}</mat-card-title>
+
+        <mat-card-subtitle>
+            {{ plan.formats }}
+        </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+        <mat-chip-list>
+            <span>
+                <mat-icon>star_border</mat-icon> 1234
+            </span>
+            <span>
+                <mat-icon>visibility</mat-icon> 1234
+            </span>
+        </mat-chip-list>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+        <button mat-icon-button (click)="openPage(plan)">
+            <mat-icon>visibility</mat-icon>
+        </button>
+
+        <button mat-icon-button (click)="setStar(plan)">
+            <mat-icon>{{ hasStar(plan) ? "star" : "star_border" }}</mat-icon>
+        </button>
+    </mat-card-actions>
+</mat-card>

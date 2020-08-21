@@ -1,17 +1,12 @@
-table {
-    width: 100%;
-    overflow: auto;
-    padding-bottom: 16px;
+mat-card {
+    display: inline-block;
+    width: calc(100vw - 350px);
+    margin: 16px;
+}
 
-    tr.cdk-row {
-        cursor: pointer;
-
-        &:hover {
-            background: whitesmoke;
-        }
-
-        td.mat-cell {
-            border-bottom-width: 0px;
-        }
+mat-card-subtitle {
+    mat-icon {
+        font-size: 1.25em;
+        vertical-align: top;
     }
 }
