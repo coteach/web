@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CrawlService } from './crawl.service';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +7,6 @@ import { CrawlService } from './crawl.service';
 })
 export class AppComponent {
   constructor(
-    private service: CrawlService,
+    private service: AppService,
   ) { }
 }

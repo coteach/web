@@ -1,0 +1,12 @@
+mat-card {
+    display: inline-block;
+    width: calc(100vw - 350px);
+    margin: 16px;
+}
+
+mat-card-subtitle {
+    mat-icon {
+        font-size: 1.25em;
+        vertical-align: top;
+    }
+}

@@ -5,6 +5,7 @@ import { MyPlansComponent } from './my-plans/my-plans.component';
 import { PlanComponent } from './plan/plan.component';
 import { Path } from './constant';
 import { SearchComponent } from './search/search.component';
+import { StarredComponent } from './starred/starred.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
       { path: '', redirectTo: Path.MyPlans, pathMatch: 'full' },
       { path: Path.Search, component: SearchComponent },
       { path: Path.MyPlans, component: MyPlansComponent },
+      { path: Path.Starred, component: StarredComponent },
     ]
   },
   { path: Path.Plan, component: PlanComponent },

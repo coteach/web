@@ -1,25 +1,34 @@
 import { Injectable } from '@angular/core';
-import { ExtenalPlan } from './models/external-plan';
+import { Plan } from './models/plan';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CrawlService {
-  result: Promise<ExtenalPlan[]>;
+  result: Promise<Plan[]>;
 
   constructor(
     private httpClient: HttpClient,
   ) {
-
     this.result = this.fecthCSHS();
   }
 
-  private fecthCSHS(): Promise<ExtenalPlan[]> {
+  getData(): Promise<Plan[]> { return this.result; }
+
+  private fecthCSHS(): Promise<Plan[]> {
     const url = "https://spreadsheets.google.com/feeds/list/1QMg26k3Kpj5oJo_ngiOQF9ysOHC7knISk4ewxEuk0bM/od6/public/values?alt=json";
 
-    return this.httpClient.get(url).toPromise().then(response => ExtenalPlan.fromGoogleSheet(response));
+    return this.httpClient.get(url).toPromise().then(response => this.googleSheetToPlan(response));
   }
 
-  getData(): Promise<ExtenalPlan[]> { return this.result; }
+  private googleSheetToPlan(json): Plan[] {
+    return json.feed.entry.map(entry =>
+      new Plan({
+        id: Math.random().toString(16).slice(2),
+        title: entry.gsx$name.$t,
+        origin: entry.gsx$page.$t,
+        formats: "pdf"
+      }));
+  }
 }

@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CrawlService } from '../crawl.service';
-import { ExtenalPlan } from '../models/external-plan';
+import { Plan } from '../models/plan';
 import { ActivatedRoute } from '@angular/router';
-
-const COLUMNS: string[] = ['name', 'formats'];
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-search',
@@ -12,26 +10,17 @@ const COLUMNS: string[] = ['name', 'formats'];
 })
 export class SearchComponent implements OnInit {
   constructor(
-    private service: CrawlService,
+    private service: AppService,
     private route: ActivatedRoute,
   ) { }
 
-  readonly columns = COLUMNS;
-  extenalPlans: ExtenalPlan[];
+  plans: Plan[];
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      let keywords = params["q"].split(" ").filter(text => text != "");
-      let includeKeywords = (plan: ExtenalPlan) => keywords.every(keyword =>
-        plan.name.includes(keyword) || plan.formats.includes(keyword)
-      );
+      const keyword = params["q"];
 
-      this.service.getData().then(plans => plans.filter(includeKeywords))
-        .then(plans => this.extenalPlans = plans);
+      this.service.searchPlan(keyword).then(plans => this.plans = plans);
     });
-  }
-
-  openPage(plan: ExtenalPlan): void {
-    window.open(plan.page, '_blank');
   }
 }
