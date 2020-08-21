@@ -52,14 +52,4 @@ export class Plan {
     static fromArray(json): Plan[] {
         return Object.values(json).map<Plan>((p) => this.from(p));
     }
-
-    static fromGoogleSheet(json): Plan[] {
-        return json.feed.entry.map(entry =>
-            new Plan({
-                id: Math.random().toString(16).slice(2),
-                title: entry.gsx$name.$t,
-                origin: entry.gsx$page.$t,
-                formats: "pdf"
-            }));
-    }
 }

@@ -1,0 +1,30 @@
+<mat-card *ngFor="let plan of dataSource">
+    <mat-card-header>
+        <mat-card-title>{{plan.title}}</mat-card-title>
+
+        <mat-card-subtitle>
+            {{ plan.formats }}
+        </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+        <mat-chip-list>
+            <span>
+                <mat-icon>star_border</mat-icon> 1234
+            </span>
+            <span>
+                <mat-icon>visibility</mat-icon> 1234
+            </span>
+        </mat-chip-list>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+        <button mat-icon-button (click)="openPage(plan)">
+            <mat-icon>visibility</mat-icon>
+        </button>
+
+        <button mat-icon-button (click)="setStar(plan)">
+            <mat-icon>{{ hasStar(plan) ? "star" : "star_border" }}</mat-icon>
+        </button>
+    </mat-card-actions>
+</mat-card>

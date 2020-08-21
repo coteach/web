@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Plan } from './models/plan';
+import { CrawlService } from './crawl.service';
 
 
 @Injectable({
@@ -8,6 +10,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 export class AppService {
   constructor(
     private httpClient: HttpClient,
+    private crawlService: CrawlService,
   ) {
     this.starList = [];
   }
@@ -41,5 +44,13 @@ export class AppService {
     if (index > -1) {
       this.starList.splice(index, 1);
     }
+  }
+  searchPlan(keyword: string): Promise<Plan[]> {
+    let keywords = keyword.split(" ").filter(text => text != "");
+    let includeKeywords = (plan: Plan) => keywords.every(keyword =>
+      plan.title.includes(keyword) || plan.formats.includes(keyword)
+    );
+
+    return this.crawlService.getData().then(plans => plans.filter(includeKeywords));
   }
 }

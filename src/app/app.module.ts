@@ -13,6 +13,7 @@ import { PlanComponent } from './plan/plan.component';
 import { EditorComponent } from './editor/editor.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './search/search.component';
+import { PlanListComponent } from './plan-list/plan-list.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SearchComponent } from './search/search.component';
     PlanComponent,
     EditorComponent,
     SearchComponent,
+    PlanListComponent,
   ],
   imports: [
     BrowserModule,
