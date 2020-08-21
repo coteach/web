@@ -27,7 +27,7 @@ export class PlanComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     var initPlan = (params: Params) => {
-      this.plan = this.storage.getPlans().find(plan => plan.id == params.id);
+      this.plan = this.storage.getMyPlans().find(plan => plan.id == params.id);
 
       if (this.plan == null) {
         this.plan = new Plan({
@@ -50,10 +50,10 @@ export class PlanComponent implements OnInit, AfterViewInit {
     this.plan.content = this.editor.getMarkdown();
     this.plan.lastchangeAt = new Date();
 
-    var plans = this.storage.getPlans().filter(value => value.id != this.plan.id);
+    var plans = this.storage.getMyPlans().filter(value => value.id != this.plan.id);
 
     plans.push(this.plan);
-    this.storage.setPlans(plans);
+    this.storage.setMyPlans(plans);
 
     this.location.back();
   }
