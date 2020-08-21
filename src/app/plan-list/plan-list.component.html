@@ -19,12 +19,32 @@
     </mat-card-content>
 
     <mat-card-actions align="end">
-        <button mat-icon-button (click)="openPage(plan)">
-            <mat-icon>visibility</mat-icon>
+        <button mat-icon-button disabled>
+            <mat-icon>link</mat-icon>
+        </button>
+
+        <button mat-icon-button disabled>
+            <mat-icon>group_add</mat-icon>
+        </button>
+
+        <button mat-icon-button disabled>
+            <mat-icon>cloud_download</mat-icon>
         </button>
 
         <button mat-icon-button (click)="setStar(plan)">
-            <mat-icon>{{ hasStar(plan) ? "star" : "star_border" }}</mat-icon>
+            <mat-icon>{{ isStarred(plan) ? "star" : "star_border" }}</mat-icon>
+        </button>
+
+        <button mat-icon-button *ngIf="plan.isExternal" (click)="openPage(plan)">
+            <mat-icon>visibility</mat-icon>
+        </button>
+
+        <button mat-icon-button *ngIf="!plan.isExternal" [routerLink]="[routerLink.Plan, plan.id]">
+            <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-icon-button *ngIf="!plan.isExternal" (click)="deletePlan(plan)">
+            <mat-icon>delete</mat-icon>
         </button>
     </mat-card-actions>
 </mat-card>

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Plan } from '../models/plan';
 import { AppService } from '../app.service';
+import { RouterLink } from '../constant';
 
 @Component({
   selector: 'plan-list',
@@ -14,6 +15,8 @@ export class PlanListComponent implements OnInit {
     private service: AppService,
   ) { }
 
+  routerLink = RouterLink;
+
   ngOnInit(): void {
   }
 
@@ -21,15 +24,20 @@ export class PlanListComponent implements OnInit {
     window.open(plan.origin, '_blank');
   }
 
-  hasStar(plan: Plan): boolean {
-    return this.service.getStarList().includes(plan.id);
+  isStarred(plan: Plan): boolean {
+    return this.service.getStarredIds().includes(plan.id);
   }
 
   setStar(plan: Plan): void {
-    if (this.hasStar(plan)) {
-      this.service.deleteStar(plan.id);
+    if (this.isStarred(plan)) {
+      this.service.deleteStarredId(plan.id);
     } else {
-      this.service.postStar(plan.id);
+      this.service.postStarredId(plan.id);
     }
+  }
+
+  deletePlan(plan: Plan): void {
+    this.dataSource = this.dataSource.filter(value => value.id != plan.id);
+    this.service.deleteMyPlan(plan.id);
   }
 }

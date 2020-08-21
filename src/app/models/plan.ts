@@ -52,4 +52,8 @@ export class Plan {
     static fromArray(json): Plan[] {
         return Object.values(json).map<Plan>((p) => this.from(p));
     }
+
+    get isExternal(): boolean {
+        return this.origin !== undefined;
+    }
 }
