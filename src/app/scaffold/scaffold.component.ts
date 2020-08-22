@@ -28,4 +28,8 @@ export class ScaffoldComponent {
 
     this.router.navigate([RouterLink.Search], { queryParams: { q: this.keyword } });
   }
+
+  resetKeyword() {
+    this.keyword = "";
+  }
 }
