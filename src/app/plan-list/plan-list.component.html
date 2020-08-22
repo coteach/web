@@ -39,6 +39,10 @@
             <mat-icon>visibility</mat-icon>
         </button>
 
+        <button mat-icon-button *ngIf="!plan.isExternal" (click)="view(plan)">
+            <mat-icon>visibility</mat-icon>
+        </button>
+
         <button mat-icon-button *ngIf="!plan.isExternal" [routerLink]="[routerLink.Plan, plan.id]">
             <mat-icon>edit</mat-icon>
         </button>
