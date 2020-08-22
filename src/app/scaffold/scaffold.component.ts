@@ -18,7 +18,7 @@ export class ScaffoldComponent {
 
   newPlan() {
     this.appService.getNew().then((id) => {
-      this.router.navigate([RouterLink.Plan, id]);
+      this.router.navigate([RouterLink.EditingPlan, id]);
     });
   }
 

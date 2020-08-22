@@ -1,0 +1,118 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="save()">
+        <mat-icon>done</mat-icon>
+    </button>
+
+    <div>
+        <mat-form-field appearance="outline">
+            <input matInput [(ngModel)]="plan.title">
+        </mat-form-field>
+
+        <div class="menu">
+            <button mat-button [matMenuTriggerFor]="fileMenu">File</button>
+            <mat-menu #fileMenu="matMenu">
+                <button mat-menu-item disabled> <span>Share</span> </button>
+
+                <button mat-menu-item disabled> <span>New</span> </button>
+                <button mat-menu-item disabled> <span>Open</span> </button>
+                <button mat-menu-item disabled> <span>Make a copy</span> </button>
+
+                <!-- <button mat-menu-item disabled> <span>Email as attachment</span> </button>
+                <button mat-menu-item disabled> <span>Download</span> </button>
+                <button mat-menu-item disabled> <span>Make available offline</span> </button>
+                <button mat-menu-item disabled> <span>Version history</span> </button>
+
+                <button mat-menu-item disabled> <span>Rename</span> </button>
+                <button mat-menu-item disabled> <span>Move to trash</span> </button>
+
+                <button mat-menu-item disabled> <span>Publish to the web</span> </button>
+                <button mat-menu-item disabled> <span>Email collaborators</span> </button>
+
+                <button mat-menu-item disabled> <span>Document details</span> </button>
+                <button mat-menu-item disabled> <span>Languange</span> </button>
+                <button mat-menu-item disabled> <span>Page step</span> </button> -->
+                <button mat-menu-item disabled>
+                    <mat-icon>print</mat-icon>
+                    <span>Print</span>
+                </button>
+            </mat-menu>
+
+            <button mat-button [matMenuTriggerFor]="editMenu">Edit</button>
+            <mat-menu #editMenu="matMenu">
+                <button mat-menu-item disabled> <span>Undo</span> </button>
+                <button mat-menu-item disabled> <span>Redo</span> </button>
+
+                <button mat-menu-item disabled> <span>Cut</span> </button>
+                <button mat-menu-item disabled> <span>Copy</span> </button>
+                <button mat-menu-item disabled> <span>Paste</span> </button>
+                <button mat-menu-item disabled> <span>Delete</span> </button>
+                <button mat-menu-item disabled> <span>Select all</span> </button>
+
+                <button mat-menu-item disabled> <span>Find and replace</span> </button>
+            </mat-menu>
+
+            <button mat-button [matMenuTriggerFor]="viewMenu">View</button>
+            <mat-menu #viewMenu="matMenu">
+                <button mat-menu-item disabled> <span>Print layout</span> </button>
+                <button mat-menu-item disabled> <span>Mode</span> </button>
+
+                <button mat-menu-item disabled> <span>Show rule</span> </button>
+                <button mat-menu-item disabled> <span>Show document outline</span> </button>
+                <button mat-menu-item disabled> <span>Show equation toolbar</span> </button>
+                <button mat-menu-item disabled> <span>Show section breaks</span> </button>
+
+                <button mat-menu-item disabled> <span>Full screen</span> </button>
+            </mat-menu>
+
+            <button mat-button [matMenuTriggerFor]="insertMenu">Insert</button>
+            <mat-menu #insertMenu="matMenu">
+                <button mat-menu-item disabled> <span>Image</span> </button>
+                <button mat-menu-item disabled> <span>Table</span> </button>
+                <button mat-menu-item disabled> <span>Drawing</span> </button>
+                <button mat-menu-item disabled> <span>Chart</span> </button>
+                <button mat-menu-item disabled> <span>Horizontal line</span> </button>
+                <button mat-menu-item disabled> <span>footnote</span> </button>
+
+                <!-- <button mat-menu-item disabled> <span>Special characters</span> </button>
+                <button mat-menu-item disabled> <span>Equation</span> </button>
+
+                <button mat-menu-item disabled> <span>Headers & footers</span> </button>
+                <button mat-menu-item disabled> <span>Page numbers</span> </button>
+                <button mat-menu-item disabled> <span>Break</span> </button>
+
+                <button mat-menu-item disabled> <span>Link</span> </button>
+                <button mat-menu-item disabled> <span>Comment</span> </button>
+
+                <button mat-menu-item disabled> <span>Bookmark</span> </button>
+                <button mat-menu-item disabled> <span>Table of contents</span> </button> -->
+            </mat-menu>
+
+            <button mat-button style="text-decoration:underline;">
+                Last edit was seconds ago
+            </button>
+        </div>
+    </div>
+
+    <span class="spacer"></span>
+
+    <div class="actions">
+        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" disabled>
+            <mat-icon>forum</mat-icon>
+        </button>
+
+        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" disabled>
+            <mat-icon>insert_comment</mat-icon>
+        </button>
+
+        <button mat-raised-button color="accent" disabled>
+            <mat-icon>share</mat-icon> Share
+        </button>
+
+        <button mat-mini-fab color="primary" disabled aria-label="Example icon-button with a heart icon"
+            matTooltip="creator@email.com">
+            <mat-icon>face</mat-icon>
+        </button>
+    </div>
+</mat-toolbar>
+
+<editor #editor [initialValue]="plan.content"></editor>

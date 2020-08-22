@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ScaffoldComponent } from './scaffold/scaffold.component';
 import { MyPlansComponent } from './my-plans/my-plans.component';
-import { PlanComponent } from './plan/plan.component';
 import { Path } from './constant';
 import { SearchComponent } from './search/search.component';
 import { StarredComponent } from './starred/starred.component';
+import { EditingPlanComponent } from './editing-plan/editing-plan.component';
 
 const routes: Routes = [
   {
@@ -18,7 +18,7 @@ const routes: Routes = [
       { path: Path.Starred, component: StarredComponent },
     ]
   },
-  { path: Path.Plan, component: PlanComponent },
+  { path: Path.EditingPlan, component: EditingPlanComponent },
   { path: '**', redirectTo: Path.MyPlans },
 ];
 
