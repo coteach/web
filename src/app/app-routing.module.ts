@@ -6,6 +6,7 @@ import { Path } from './constant';
 import { SearchComponent } from './search/search.component';
 import { StarredComponent } from './starred/starred.component';
 import { EditingPlanComponent } from './editing-plan/editing-plan.component';
+import { ViewingPlanComponent } from './viewing-plan/viewing-plan.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
     ]
   },
   { path: Path.EditingPlan, component: EditingPlanComponent },
+  { path: Path.ViewingPlan, component: ViewingPlanComponent },
   { path: '**', redirectTo: Path.MyPlans },
 ];
 
