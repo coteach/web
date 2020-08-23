@@ -24,6 +24,10 @@ export class PlanListComponent implements OnInit {
     window.open(plan.origin, '_blank');
   }
 
+  view(plan: Plan): void {
+
+  }
+
   isStarred(plan: Plan): boolean {
     return this.service.getStarredIds().includes(plan.id);
   }

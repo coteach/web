@@ -1,0 +1,46 @@
+.menu {
+    button {
+        min-width: unset;
+        line-height: 24px;
+        padding: 0 16px;
+    }
+}
+
+::ng-deep .mat-form-field {
+    // margin-left: 8px;
+    margin-top: -24px;
+    height: 24px;
+    width: 270px;
+
+    .mat-form-field-wrapper {
+        margin: -16px 0 !important;
+        padding: 0;
+    }
+
+    .mat-form-field-flex {
+        margin-top: -5px;
+
+        & .mat-form-field-infix {
+            padding: 6px 0px 1px 0px !important;
+        }
+
+        .mat-form-field-outline {
+            margin-top: 16px !important;
+            color: transparent;
+        }
+
+        .mat-form-field-outline-thick {
+            color: rgb(211, 210, 210);
+        }
+    }
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.actions {
+    button {
+        margin-left: 16px;
+    }
+}

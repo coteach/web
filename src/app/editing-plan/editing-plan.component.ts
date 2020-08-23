@@ -10,11 +10,11 @@ export declare type Params = {
 };
 
 @Component({
-  selector: 'app-plan',
-  templateUrl: './plan.component.html',
-  styleUrls: ['./plan.component.scss']
+  selector: 'app-editing-plan',
+  templateUrl: './editing-plan.component.html',
+  styleUrls: ['./editing-plan.component.scss']
 })
-export class PlanComponent implements OnInit, AfterViewInit {
+export class EditingPlanComponent implements OnInit, AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private location: Location,
@@ -58,4 +58,5 @@ export class PlanComponent implements OnInit, AfterViewInit {
     this.location.back();
   }
 }
+
 
