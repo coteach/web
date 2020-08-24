@@ -1,6 +1,5 @@
 <mat-toolbar color="primary">
     <h1>Lesson Plan Hub</h1>
-
     <span class="spacer"></span>
 
     <div class="actions">
@@ -35,4 +34,4 @@
     </div>
 </mat-toolbar>
 
-<viewer #viewer [initialValue]="plan.content"></viewer>
+<viewer #viewer *ngIf="plan != null" [initialValue]="plan.content"></viewer>

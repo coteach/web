@@ -5,7 +5,7 @@ import * as Viewer from '@toast-ui/editor/dist/toastui-editor-viewer';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'viewer',
-  template: '<div class="toast-ui-editor"></div>',
+  template: '<div class="toast-ui-viewer"></div>',
   styleUrls: ['./viewer.component.scss']
 })
 export class ViewerComponent implements OnInit {
@@ -17,7 +17,7 @@ export class ViewerComponent implements OnInit {
 
   ngOnInit(): void {
     var options = <Viewer.ViewerOptions>{
-      el: document.querySelector('.toast-ui-editor'),
+      el: document.querySelector('.toast-ui-viewer'),
       height: "calc(100% - 66px)",
     };
 

@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, AfterViewInit, HostListener } from '@angular/core';
 import { Location } from '@angular/common';
 import { EditorComponent } from '../editor/editor.component';
-import { StorageService } from '../storage.service';
 import { Plan } from '../models/plan';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AppService } from '../app.service';
+import { RouterLink } from '../constant';
 
 export declare type Params = {
   id: string;
@@ -17,26 +18,18 @@ export declare type Params = {
 export class EditingPlanComponent implements OnInit, AfterViewInit {
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location,
-    private storage: StorageService,
+    private service: AppService,
   ) { }
 
   @ViewChild('editor') editor: EditorComponent;
 
-  plan: Plan = new Plan();
+  plan: Plan;
 
   ngOnInit(): void {
-    var initPlan = (params: Params) => {
-      this.plan = this.storage.getMyPlans().find(plan => plan.id == params.id);
-
-      if (this.plan == null) {
-        this.plan = new Plan({
-          id: params.id,
-          title: "Untitled",
-          lastchangeAt: new Date(),
-        });
-      }
-    }
+    let initPlan = (params: Params) =>
+      this.service.getPlan(params.id).then(plan => this.plan = plan);
 
     this.route.params.subscribe(initPlan);
   }
@@ -50,12 +43,9 @@ export class EditingPlanComponent implements OnInit, AfterViewInit {
     this.plan.content = this.editor.getMarkdown();
     this.plan.lastchangeAt = new Date();
 
-    var plans = this.storage.getMyPlans().filter(value => value.id != this.plan.id);
+    this.service.updatePlan(this.plan);
 
-    plans.push(this.plan);
-    this.storage.setMyPlans(plans);
-
-    this.location.back();
+    this.router.navigate([RouterLink.MyPlans]);
   }
 }
 

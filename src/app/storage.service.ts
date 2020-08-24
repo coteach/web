@@ -8,8 +8,8 @@ export class StorageService {
 
   constructor() { }
 
-  getMyPlans(): Plan[] {
-    let result = this.get("myPlans");
+  getPlans(): Plan[] {
+    let result = this.get("plans");
     if (result == null) {
       return [];
     }
@@ -17,11 +17,11 @@ export class StorageService {
     return Plan.fromArray(result);
   }
 
-  setMyPlans(value: Plan[]) {
+  setPlans(value: Plan[]) {
     if (value == null) {
-      this.remove("myPlans");
+      this.remove("plans");
     } else {
-      this.set("myPlans", value);
+      this.set("plans", value);
     }
   }
 

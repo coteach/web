@@ -2,10 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ViewerComponent } from '../viewer/viewer.component';
 import { ActivatedRoute } from '@angular/router';
 import { Plan } from '../models/plan';
-import { StorageService } from '../storage.service';
+import { AppService } from '../app.service';
 
 export declare type Params = {
-  plan: string;
+  title: string;
 };
 
 @Component({
@@ -19,14 +19,14 @@ export class ViewingPlanComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private storage: StorageService,
+    private service: AppService,
   ) { }
 
-  plan: Plan = new Plan();
+  plan: Plan;
 
   ngOnInit(): void {
-    var initPlan = (params: Params) =>
-      this.plan = this.storage.getMyPlans().find(plan => plan.title == params.plan);
+    let initPlan = (params: Params) =>
+      this.service.getPlanByTitle(params.title).then(plan => this.plan = plan);
 
     this.route.params.subscribe(initPlan);
   }

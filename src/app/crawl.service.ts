@@ -10,11 +10,9 @@ export class CrawlService {
 
   constructor(
     private httpClient: HttpClient,
-  ) {
-    this.result = this.fecthCSHS();
-  }
+  ) { }
 
-  getData(): Promise<Plan[]> { return this.result; }
+  getData(): Promise<Plan[]> { return this.fecthCSHS(); }
 
   private fecthCSHS(): Promise<Plan[]> {
     const url = "https://spreadsheets.google.com/feeds/list/1QMg26k3Kpj5oJo_ngiOQF9ysOHC7knISk4ewxEuk0bM/od6/public/values?alt=json";

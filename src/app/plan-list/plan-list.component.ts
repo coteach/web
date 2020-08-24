@@ -15,9 +15,11 @@ export class PlanListComponent implements OnInit {
     private service: AppService,
   ) { }
 
+  myId: string;
   routerLink = RouterLink;
 
   ngOnInit(): void {
+    this.myId = this.service.getMyId();
   }
 
   openPage(plan: Plan): void {
