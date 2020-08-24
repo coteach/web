@@ -1,5 +1,6 @@
 interface PlanParams {
     id?: string;
+    userId?: string;
     title?: string;
     content?: string;
     tags?: string;
@@ -20,6 +21,10 @@ export class Plan {
      * 識別碼
      */
     id: string;
+    /**
+     * 用戶識別碼
+     */
+    userId: string;
     /**
      * 標題
      */

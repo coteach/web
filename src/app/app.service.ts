@@ -4,10 +4,12 @@ import { Plan } from './models/plan';
 import { StorageService } from './storage.service';
 import { CrawlService } from './crawl.service';
 
+const mockMyId = "user001";
+
 // source : https://ed.arte.gov.tw/ch/content/m_design_list_1.aspx?PageNo=1
-const mockMyPlans = <Plan[]>[
+const mockPlans = <Plan[]>[
   {
-    id: "template1", title: "搜尋演算法教案", lastchangeAt: new Date('2020-03-08'), content:
+    userId: mockMyId, id: "template1", title: "搜尋演算法教案", lastchangeAt: new Date('2020-03-08'), content:
       `# 搜尋演算法教案範例
   
   | 單元名稱 | 搜尋演算法 | 教學設計者 |Mengting |
@@ -36,20 +38,21 @@ const mockMyPlans = <Plan[]>[
   |---|---|
   |教學活動資源|Akinator 神燈精靈遊戲:https://en.akinator.com|
   |教學設備|電腦教室、筆|
-  ` },
-  { id: "1", title: "名畫失竊記", lastchangeAt: new Date('2020-03-08') },
-  { id: "2", title: "色彩藝拼趣", lastchangeAt: new Date('2020-03-08') },
-  { id: "3", title: "新『金』兵日記 色彩好好玩", lastchangeAt: new Date('2020-03-08') },
-  { id: "4", title: "櫥窗裡的”衣”想世界", lastchangeAt: new Date('2020-03-08') },
-  { id: "5", title: "詩與圖的對話", lastchangeAt: new Date('2020-03-08') },
-  { id: "6", title: "彩繪心靈的畫布", lastchangeAt: new Date('2020-03-08') },
-  { id: "7", title: "珍重再見", lastchangeAt: new Date('2020-03-08') },
-  { id: "8", title: "畢卡索&立體派", lastchangeAt: new Date('2020-03-08') },
-  { id: "9", title: "玩美無所不在－美的原理原則", lastchangeAt: new Date('2020-03-08') },
-  { id: "10", title: "「有恆」為成功之本小書製作", lastchangeAt: new Date('2020-03-08') },
-  { id: "11", title: "相信自己～愛唱歌的鳥", lastchangeAt: new Date('2020-03-08') },
-  { id: "12", title: "河水變奏曲", lastchangeAt: new Date('2020-03-08') },
-  { id: "13", title: "兩隻老虎狂想曲", lastchangeAt: new Date('2020-03-08') },
+  `
+  },
+  { userId: "user002", id: "1", title: "名畫失竊記", lastchangeAt: new Date('2020-03-08') },
+  { userId: "user002", id: "2", title: "色彩藝拼趣", lastchangeAt: new Date('2020-03-08') },
+  { userId: "user002", id: "3", title: "新『金』兵日記 色彩好好玩", lastchangeAt: new Date('2020-03-08') },
+  { userId: "user002", id: "4", title: "櫥窗裡的”衣”想世界", lastchangeAt: new Date('2020-03-08') },
+  { userId: "user002", id: "5", title: "詩與圖的對話", lastchangeAt: new Date('2020-03-08') },
+  { userId: "user002", id: "6", title: "彩繪心靈的畫布", lastchangeAt: new Date('2020-03-08') },
+  { userId: "user002", id: "7", title: "珍重再見", lastchangeAt: new Date('2020-03-08') },
+  { userId: "user002", id: "8", title: "畢卡索&立體派", lastchangeAt: new Date('2020-03-08') },
+  { userId: "user002", id: "9", title: "玩美無所不在－美的原理原則", lastchangeAt: new Date('2020-03-08') },
+  { userId: "user002", id: "10", title: "「有恆」為成功之本小書製作", lastchangeAt: new Date('2020-03-08') },
+  { userId: "user002", id: "11", title: "相信自己～愛唱歌的鳥", lastchangeAt: new Date('2020-03-08') },
+  { userId: "user002", id: "12", title: "河水變奏曲", lastchangeAt: new Date('2020-03-08') },
+  { userId: "user002", id: "13", title: "兩隻老虎狂想曲", lastchangeAt: new Date('2020-03-08') },
 ];
 
 @Injectable({
@@ -61,41 +64,59 @@ export class AppService {
     private storage: StorageService,
     private crawlService: CrawlService,
   ) {
-    this.starredIds = this.storage.getStarredIds();
-    this.myPlans = this.storage.getMyPlans();
-    this.externalPlans = this.storage.getExternalPlans();
-
-    if (this.storage.getExternalPlans().length == 0) {
-      this.crawlService.getData().then(plans => {
-        this.externalPlans = plans;
-        this.storage.setExternalPlans(plans);
-      });
-    }
-
-    if (this.storage.getMyPlans().length == 0) {
-      this.storage.setMyPlans(mockMyPlans);
-      this.myPlans = mockMyPlans;
-    }
-
-    this.myPlans.sort((a, b) => b.lastchangeAt.getTime() - a.lastchangeAt.getTime());
-
+    this.initStorage().then(() => this.initValues());
   }
 
   private starredIds: string[];
-  private myPlans: Plan[];
-  private externalPlans: Plan[];
+  private plans: Plan[];
 
-  getNew(): Promise<string> {
-    const url = "https://codimd.schl.tw/api/new";
-    let getNewId = (error: HttpErrorResponse) => {
-      return Math.random().toString(16).slice(2);
-      // return error.url.split('/').pop();
+  private get myPlans(): Plan[] {
+    return this.plans.filter(plan => plan.userId == mockMyId);
+  }
+
+  private initStorage(): Promise<void> {
+    let initExternalPlnas = (): Promise<string> => new Promise(resolve => {
+      if (this.storage.getExternalPlans().length == 0) {
+        this.crawlService.getData().then(plans => this.storage.setExternalPlans(plans));
+      }
+
+      resolve();
+    });
+
+    let initPlnas = (): void => {
+      if (this.storage.getPlans().length == 0) {
+        let externalPlans = this.storage.getExternalPlans();
+        let plans = mockPlans.concat(externalPlans);
+        this.storage.setPlans(plans);
+      }
     };
 
-    return this.httpClient.get<string>(url)
-      .toPromise()
-      .catch(getNewId);
+    return initExternalPlnas().then(initPlnas);
   }
+
+  private initValues(): void {
+    this.starredIds = this.storage.getStarredIds();
+    this.plans = this.storage.getPlans();
+  }
+
+  getMyId(): string {
+    return mockMyId;
+  }
+
+  getNew(): Promise<string> {
+    let plan = new Plan({
+      id: Math.random().toString(16).slice(2),
+      userId: mockMyId,
+      title: "Untitled",
+      lastchangeAt: new Date(),
+    });
+
+    this.plans.push(plan);
+    this.storage.setPlans(this.plans);
+
+    return new Promise<string>(resolve => resolve(plan.id));
+  }
+
 
   getStarredIds(): string[] {
     return this.starredIds;
@@ -121,22 +142,39 @@ export class AppService {
   }
 
   deleteMyPlan(id: string): void {
-    this.myPlans = this.myPlans.filter(value => value.id != id);
-    this.storage.setMyPlans(this.myPlans);
+    this.plans = this.plans.filter(value => value.id != id);
+    this.storage.setPlans(this.plans);
+  }
+
+  getPlan(id: string): Promise<Plan> {
+    return new Promise<Plan>(resolve => resolve(this.plans.find(p => p.id == id)));
+  }
+
+  getPlanByTitle(title: string): Promise<Plan> {
+    console.log(title);
+    return new Promise<Plan>(resolve => resolve(this.plans.find(p => p.title == title)));
+  }
+
+  putPlan(plan: Plan): void {
+    this.plans = this.plans.filter(value => value.id != plan.id);
+    this.plans.push(plan);
+
+    this.storage.setPlans(this.plans);
   }
 
   searchPlan(keyword: string): Promise<Plan[]> {
     const keywords = keyword.split(" ").filter(text => text != "");
     let includeKeywords = (plan: Plan) => keywords.every(keyword =>
-      plan.title.includes(keyword) || plan.formats.includes(keyword)
+      plan.title.includes(keyword) || plan.formats?.includes(keyword)
     );
-    let result = this.externalPlans.filter(includeKeywords);
+
+    let result = this.plans.filter(includeKeywords);
 
     return new Promise<Plan[]>(resolve => resolve(result));
   }
 
   getStarred(): Promise<Plan[]> {
-    let externalPlans = this.externalPlans.filter(plan => this.starredIds.includes(plan.id));
+    let externalPlans = this.plans.filter(plan => this.starredIds.includes(plan.id));
     let plans = this.myPlans.filter(plan => this.starredIds.includes(plan.id))
 
     return new Promise<Plan[]>(resolve => resolve(plans.concat(externalPlans)));

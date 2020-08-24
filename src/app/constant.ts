@@ -2,7 +2,7 @@
 export enum Path {
     MyPlans = 'my-plans',
     EditingPlan = 'plan/:id',
-    ViewingPlan = ':someone/:plan',
+    ViewingPlan = ':someone/:title',
     Search = 'search',
     Starred = 'starred',
 }

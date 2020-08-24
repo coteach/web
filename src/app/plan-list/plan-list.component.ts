@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Plan } from '../models/plan';
 import { AppService } from '../app.service';
 import { RouterLink } from '../constant';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'plan-list',
@@ -13,23 +14,38 @@ export class PlanListComponent implements OnInit {
 
   constructor(
     private service: AppService,
+    private router: Router,
   ) { }
 
+  myId: string;
   routerLink = RouterLink;
 
+  get randNumber(): number {
+    return Math.floor(Math.random() * 90);
+  }
+
   ngOnInit(): void {
+    this.myId = this.service.getMyId();
   }
 
   openPage(plan: Plan): void {
     window.open(plan.origin, '_blank');
   }
 
-  view(plan: Plan): void {
-
-  }
-
   isStarred(plan: Plan): boolean {
     return this.service.getStarredIds().includes(plan.id);
+  }
+
+  canEdit(plan: Plan): boolean {
+    return this.canDelete(plan);
+  }
+
+  canDelete(plan: Plan): boolean {
+    return this.myId == plan.userId;
+  }
+
+  canFork(plan: Plan): boolean {
+    return this.myId != plan.userId && !plan.isExternal;
   }
 
   setStar(plan: Plan): void {
@@ -43,5 +59,14 @@ export class PlanListComponent implements OnInit {
   deletePlan(plan: Plan): void {
     this.dataSource = this.dataSource.filter(value => value.id != plan.id);
     this.service.deleteMyPlan(plan.id);
+  }
+
+  async forkPlan(source: Plan): Promise<void> {
+    let plan = Plan.from(source);
+    plan.id = await this.service.getNew();
+    plan.userId = this.myId;
+
+    this.service.putPlan(plan);
+    this.router.navigate([RouterLink.EditingPlan, plan.id]);
   }
 }
