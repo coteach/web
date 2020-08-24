@@ -43,7 +43,7 @@ export class EditingPlanComponent implements OnInit, AfterViewInit {
     this.plan.content = this.editor.getMarkdown();
     this.plan.lastchangeAt = new Date();
 
-    this.service.updatePlan(this.plan);
+    this.service.putPlan(this.plan);
 
     this.router.navigate([RouterLink.MyPlans]);
   }

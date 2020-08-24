@@ -10,10 +10,13 @@
     <mat-card-content>
         <mat-chip-list>
             <span>
-                <mat-icon>star_border</mat-icon> 1234
+                <mat-icon>star_border</mat-icon> {{ randNumber }}
             </span>
             <span>
-                <mat-icon>visibility</mat-icon> 1234
+                <mat-icon>visibility</mat-icon> {{ randNumber }}
+            </span>
+            <span *ngIf="!plan.isExternal">
+                <mat-icon>alt_route</mat-icon> {{ randNumber }}
             </span>
         </mat-chip-list>
     </mat-card-content>
@@ -32,7 +35,8 @@
         </button>
 
         <button mat-icon-button (click)="setStar(plan)">
-            <mat-icon>{{ isStarred(plan) ? "star" : "star_border" }}</mat-icon>
+            <mat-icon *ngIf="isStarred(plan)"> star </mat-icon>
+            <mat-icon *ngIf="!isStarred(plan)"> star_border </mat-icon>
         </button>
 
         <button mat-icon-button *ngIf="plan.isExternal" (click)="openPage(plan)">
@@ -43,11 +47,15 @@
             <mat-icon>visibility</mat-icon>
         </button>
 
-        <button mat-icon-button *ngIf="!plan.isExternal" [routerLink]="[routerLink.EditingPlan, plan.id]">
+        <button mat-icon-button [disabled]="!canEdit(plan)" [routerLink]="[routerLink.EditingPlan, plan.id]">
             <mat-icon>edit</mat-icon>
         </button>
 
-        <button mat-icon-button *ngIf="!plan.isExternal" (click)="deletePlan(plan)">
+        <button mat-icon-button [disabled]="!canFork(plan)" (click)="forkPlan(plan)">
+            <mat-icon>alt_route</mat-icon>
+        </button>
+
+        <button mat-icon-button [disabled]="!canDelete(plan)" (click)="deletePlan(plan)">
             <mat-icon>delete</mat-icon>
         </button>
     </mat-card-actions>

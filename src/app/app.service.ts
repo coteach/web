@@ -155,7 +155,7 @@ export class AppService {
     return new Promise<Plan>(resolve => resolve(this.plans.find(p => p.title == title)));
   }
 
-  updatePlan(plan: Plan): void {
+  putPlan(plan: Plan): void {
     this.plans = this.plans.filter(value => value.id != plan.id);
     this.plans.push(plan);
 
