@@ -44,3 +44,12 @@
         margin-left: 16px;
     }
 }
+
+.mat-drawer {
+    width: 300px;
+}
+
+.mat-drawer-container {
+    width: 100%;
+    height: calc(100% - 66px);
+}
