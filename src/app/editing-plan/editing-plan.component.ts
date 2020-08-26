@@ -25,11 +25,11 @@ export class EditingPlanComponent implements OnInit, AfterViewInit {
 
   @ViewChild('editor') editor: EditorComponent;
 
-  plan: Plan;
+  plan: Plan = new Plan();
 
   ngOnInit(): void {
     let initPlan = (params: Params) =>
-      this.service.getPlan(params.id).then(plan => this.plan = plan);
+      this.service.getPlan(params.id).then(plan => this.plan = plan).then(plan => this.editor.setMarkdown(plan.content));
 
     this.route.params.subscribe(initPlan);
   }
