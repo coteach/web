@@ -2,6 +2,7 @@ interface PlanParams {
     id?: string;
     userId?: string;
     title?: string;
+    starred?: boolean;
     content?: string;
     tags?: string;
     origin?: string;
@@ -29,6 +30,10 @@ export class Plan {
      * 標題
      */
     title: string;
+    /**
+     * 已關注
+     */
+    starred: boolean;
     /**
      * 內容
      */

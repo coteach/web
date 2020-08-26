@@ -10,13 +10,13 @@
     <mat-card-content>
         <mat-chip-list>
             <span>
-                <mat-icon>star_border</mat-icon> {{ randNumber }}
+                <mat-icon>star_border</mat-icon> 123
             </span>
             <span>
-                <mat-icon>visibility</mat-icon> {{ randNumber }}
+                <mat-icon>visibility</mat-icon> 123
             </span>
             <span *ngIf="!plan.isExternal">
-                <mat-icon>alt_route</mat-icon> {{ randNumber }}
+                <mat-icon>alt_route</mat-icon> 123
             </span>
         </mat-chip-list>
     </mat-card-content>
@@ -35,8 +35,8 @@
         </button>
 
         <button mat-icon-button (click)="setStar(plan)">
-            <mat-icon *ngIf="isStarred(plan)"> star </mat-icon>
-            <mat-icon *ngIf="!isStarred(plan)"> star_border </mat-icon>
+            <mat-icon *ngIf="plan.starred"> star </mat-icon>
+            <mat-icon *ngIf="!plan.starred"> star_border </mat-icon>
         </button>
 
         <button mat-icon-button *ngIf="plan.isExternal" (click)="openPage(plan)">

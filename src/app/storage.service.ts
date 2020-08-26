@@ -42,23 +42,6 @@ export class StorageService {
     }
   }
 
-  getStarredIds(): string[] {
-    let result = this.get<string[]>("starredIds");
-    if (result == null) {
-      return [];
-    }
-
-    return result;
-  }
-
-  setStarredIds(value: string[]) {
-    if (value == null) {
-      this.remove("starredIds");
-    } else {
-      this.set("starredIds", value);
-    }
-  }
-
   get<T>(key: string): T {
     let result = localStorage.getItem(key);
 

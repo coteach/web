@@ -20,20 +20,12 @@ export class PlanListComponent implements OnInit {
   myId: string;
   routerLink = RouterLink;
 
-  get randNumber(): number {
-    return Math.floor(Math.random() * 90);
-  }
-
   ngOnInit(): void {
     this.myId = this.service.getMyId();
   }
 
   openPage(plan: Plan): void {
     window.open(plan.origin, '_blank');
-  }
-
-  isStarred(plan: Plan): boolean {
-    return this.service.getStarredIds().includes(plan.id);
   }
 
   canEdit(plan: Plan): boolean {
@@ -49,11 +41,8 @@ export class PlanListComponent implements OnInit {
   }
 
   setStar(plan: Plan): void {
-    if (this.isStarred(plan)) {
-      this.service.deleteStarredId(plan.id);
-    } else {
-      this.service.postStarredId(plan.id);
-    }
+    plan.starred = !plan.starred;
+    this.service.putPlan(plan);
   }
 
   deletePlan(plan: Plan): void {

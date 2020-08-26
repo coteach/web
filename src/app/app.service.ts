@@ -64,23 +64,27 @@ export class AppService {
     private storage: StorageService,
     private crawlService: CrawlService,
   ) {
-    this.initStorage().then(() => this.initValues());
+    this.initialized = this.initStorage();
   }
 
-  private starredIds: string[];
-  private plans: Plan[];
+  private initialized: Promise<void>;
 
-  private get myPlans(): Plan[] {
-    return this.plans.filter(plan => plan.userId == mockMyId);
+  private get plansAsync(): Promise<Plan[]> {
+    return this.initialized.then(() => this.storage.getPlans());
+  };
+
+  private get myPlansAsync(): Promise<Plan[]> {
+    return this.plansAsync.then(plans => plans.filter(plan => plan.userId == mockMyId));
   }
 
   private initStorage(): Promise<void> {
     let initExternalPlnas = (): Promise<string> => new Promise(resolve => {
+      let result;
       if (this.storage.getExternalPlans().length == 0) {
-        this.crawlService.getData().then(plans => this.storage.setExternalPlans(plans));
+        result = this.crawlService.getData().then(plans => this.storage.setExternalPlans(plans));
       }
 
-      resolve();
+      resolve(result);
     });
 
     let initPlnas = (): void => {
@@ -94,72 +98,52 @@ export class AppService {
     return initExternalPlnas().then(initPlnas);
   }
 
-  private initValues(): void {
-    this.starredIds = this.storage.getStarredIds();
-    this.plans = this.storage.getPlans();
-  }
-
   getMyId(): string {
     return mockMyId;
   }
 
-  getNew(): Promise<string> {
-    let plan = new Plan({
+  async getNew(): Promise<string> {
+    let untitledPlan = new Plan({
       id: Math.random().toString(16).slice(2),
       userId: mockMyId,
       title: "Untitled",
       lastchangeAt: new Date(),
     });
 
-    this.plans.push(plan);
-    this.storage.setPlans(this.plans);
+    let plans = await this.plansAsync;
+    plans.push(untitledPlan);
+    this.storage.setPlans(plans);
 
-    return new Promise<string>(resolve => resolve(plan.id));
+    return untitledPlan.id;
   }
 
-
-  getStarredIds(): string[] {
-    return this.starredIds;
-  }
-
-  postStarredId(id: string): void {
-    if (!this.starredIds.includes(id)) {
-      this.starredIds.push(id);
-      this.storage.setStarredIds(this.starredIds);
-    }
-  }
-
-  deleteStarredId(id: string): void {
-    const index = this.starredIds.findIndex(p => p === id);
-    if (index > -1) {
-      this.starredIds.splice(index, 1);
-      this.storage.setStarredIds(this.starredIds);
-    }
+  async getStarred(): Promise<Plan[]> {
+    return this.plansAsync.then(plans => plans.filter(plan => plan.starred));
   }
 
   getMyPlans(): Promise<Plan[]> {
-    return new Promise<Plan[]>(resolve => resolve(this.myPlans));
+    return this.myPlansAsync;
   }
 
-  deleteMyPlan(id: string): void {
-    this.plans = this.plans.filter(value => value.id != id);
-    this.storage.setPlans(this.plans);
+  async deleteMyPlan(id: string): Promise<void> {
+    let plans = (await this.plansAsync).filter(value => value.id != id);
+
+    this.storage.setPlans(plans);
   }
 
   getPlan(id: string): Promise<Plan> {
-    return new Promise<Plan>(resolve => resolve(this.plans.find(p => p.id == id)));
+    return this.plansAsync.then(plans => plans.find(p => p.id == id));
   }
 
   getPlanByTitle(title: string): Promise<Plan> {
-    console.log(title);
-    return new Promise<Plan>(resolve => resolve(this.plans.find(p => p.title == title)));
+    return this.plansAsync.then(plans => plans.find(p => p.title == title));
   }
 
-  putPlan(plan: Plan): void {
-    this.plans = this.plans.filter(value => value.id != plan.id);
-    this.plans.push(plan);
-
-    this.storage.setPlans(this.plans);
+  async putPlan(plan: Plan): Promise<void> {
+    let plans = (await this.plansAsync).filter(value => value.id != plan.id);
+    plans.push(plan);
+    console.log(123);
+    this.storage.setPlans(plans);
   }
 
   searchPlan(keyword: string): Promise<Plan[]> {
@@ -168,15 +152,6 @@ export class AppService {
       plan.title.includes(keyword) || plan.formats?.includes(keyword)
     );
 
-    let result = this.plans.filter(includeKeywords);
-
-    return new Promise<Plan[]>(resolve => resolve(result));
-  }
-
-  getStarred(): Promise<Plan[]> {
-    let externalPlans = this.plans.filter(plan => this.starredIds.includes(plan.id));
-    let plans = this.myPlans.filter(plan => this.starredIds.includes(plan.id))
-
-    return new Promise<Plan[]>(resolve => resolve(plans.concat(externalPlans)));
+    return this.plansAsync.then(plans => plans.filter(includeKeywords));
   }
 }
