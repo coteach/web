@@ -5,8 +5,8 @@
 
     <div>
         <div class="header">
-            <mat-form-field appearance="outline">
-                <input matInput [(ngModel)]="plan.title">
+            <mat-form-field appearance="outline" [ngStyle]="{'width.px': width}">
+                <input matInput [(ngModel)]="plan.title" (input)="resize()">
             </mat-form-field>
 
             <button mat-icon-button>

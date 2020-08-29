@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, HostListener, ElementRef } from '@angular/core';
 import { Location } from '@angular/common';
 import { EditorComponent } from '../editor/editor.component';
 import { Plan } from '../models/plan';
@@ -26,6 +26,8 @@ export class EditingPlanComponent implements OnInit, AfterViewInit {
 
   @ViewChild('editor') editor: EditorComponent;
 
+  hiddenTilte: HTMLSpanElement;
+  width: number;
   plan: Plan = new Plan();
   message: string;
   messages: string[] = [
@@ -35,8 +37,13 @@ export class EditingPlanComponent implements OnInit, AfterViewInit {
   ];
 
   ngOnInit(): void {
+    this.hiddenTilte = document.createElement("span");
+    this.hiddenTilte.style.cssText = "font-size: 20px;";
+
     let initPlan = (params: Params) =>
-      this.service.getPlan(params.id).then(plan => this.plan = plan).then(plan => this.editor.setMarkdown(plan.content));
+      this.service.getPlan(params.id).then(plan => this.plan = plan)
+        .then(plan => this.editor.setMarkdown(plan.content))
+        .finally(() => this.resize());
 
     this.route.params.subscribe(initPlan);
   }
@@ -58,6 +65,17 @@ export class EditingPlanComponent implements OnInit, AfterViewInit {
   talk(): void {
     this.messages.push("孟庭： " + this.message);
     this.message = "";
+  }
+
+  resize() {
+    const minWidth = 100, offset = 40;
+    this.hiddenTilte.innerText = this.plan.title;
+
+    document.body.appendChild(this.hiddenTilte);
+    let newWidth = this.hiddenTilte.offsetWidth + offset;
+    document.body.removeChild(this.hiddenTilte);
+
+    setTimeout(() => this.width = Math.max(minWidth, newWidth));
   }
 }
 
