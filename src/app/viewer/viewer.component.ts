@@ -18,7 +18,7 @@ export class ViewerComponent implements OnInit {
   ngOnInit(): void {
     var options = <Viewer.ViewerOptions>{
       el: document.querySelector('.toast-ui-viewer'),
-      height: "calc(100% - 66px)",
+      height: "100%",
     };
 
     this.viewer = new Viewer.default(options);

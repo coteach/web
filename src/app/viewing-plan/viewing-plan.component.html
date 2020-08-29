@@ -1,37 +1,40 @@
 <mat-toolbar color="primary">
-    <h1>Lesson Plan Hub</h1>
+    <h1 (click)="goHome()">Lesson Plan Hub</h1>
     <span class="spacer"></span>
 
     <div class="actions">
-        <button mat-icon-button disabled>
-            <mat-icon>cloud_download</mat-icon>
-        </button>
-
-        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" disabled>
-            <mat-icon>star_border</mat-icon>
-        </button>
-
-        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" disabled>
+        <button mat-icon-button (click)="forkPlan(plan)">
             <mat-icon>alt_route</mat-icon>
         </button>
 
-        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" disabled>
-            <mat-icon>rate_review</mat-icon>
-        </button>
-
-        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" disabled>
+        <button mat-icon-button *ngIf="canEdit(plan)" [routerLink]="[routerLink.EditingPlan, plan.id]">
             <mat-icon>edit</mat-icon>
         </button>
 
-        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" disabled>
+        <button mat-icon-button (click)="setStar(plan)">
+            <mat-icon *ngIf="plan.starred"> star </mat-icon>
+            <mat-icon *ngIf="!plan.starred"> star_border </mat-icon>
+        </button>
+
+        <button mat-icon-button (click)="downloadPlan(plan)">
+            <mat-icon>cloud_download</mat-icon>
+        </button>
+
+        <button mat-icon-button>
             <mat-icon>share</mat-icon>
         </button>
 
-        <button mat-mini-fab color="primary" disabled aria-label="Example icon-button with a heart icon"
-            matTooltip="creator@email.com">
+        <button mat-icon-button>
+            <mat-icon>notifications</mat-icon>
+        </button>
+
+        <button mat-mini-fab color="primary" disabled matTooltip="creator@email.com">
             <mat-icon>face</mat-icon>
         </button>
     </div>
 </mat-toolbar>
 
-<viewer #viewer *ngIf="plan != null" [initialValue]="plan.content"></viewer>
+<div class="content">
+
+    <viewer #viewer *ngIf="plan != null" [initialValue]="plan.content"></viewer>
+</div>
