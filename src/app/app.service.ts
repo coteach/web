@@ -57,6 +57,8 @@ export class AppService {
       id: Math.random().toString(16).slice(2),
       userId: this.getMyId(),
       title: "Untitled",
+      starredNumber: 0,
+      forkedNumber: 0,
       lastchangeAt: new Date(),
     });
 
