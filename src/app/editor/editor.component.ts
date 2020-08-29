@@ -70,7 +70,7 @@ export class EditorComponent implements OnInit {
   ngOnInit() {
     var options = <Editor.EditorOptions>{
       el: document.querySelector('.toast-ui-editor'),
-      height: "calc(100% - 66px)",
+      height: "100%",
       initialEditType: EditType.Wysiwyg,
       toolbarItems: defaultToolbarItems,
       previewStyle: PreviewStyle.Vertical,
