@@ -1,15 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Plan } from './models/plan';
 
+enum Key {
+  Version,
+  Plans,
+  ExternalPlans
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
 
-  constructor() { }
+  constructor() {
+    const newVersion = "202008300229";
+    let oldVersion = this.get<string>(Key[Key.Version]);
+
+    if (newVersion != oldVersion) {
+      this.set(Key[Key.Version], newVersion);
+      this.remove(Key[Key.Plans]);
+      this.remove(Key[Key.ExternalPlans]);
+    }
+  }
 
   getPlans(): Plan[] {
-    let result = this.get("plans");
+    let result = this.get(Key[Key.Plans]);
     if (result == null) {
       return [];
     }
@@ -19,14 +34,14 @@ export class StorageService {
 
   setPlans(value: Plan[]) {
     if (value == null) {
-      this.remove("plans");
+      this.remove(Key[Key.Plans]);
     } else {
-      this.set("plans", value);
+      this.set(Key[Key.Plans], value);
     }
   }
 
   getExternalPlans(): Plan[] {
-    let result = this.get("externalPlans");
+    let result = this.get(Key[Key.ExternalPlans]);
     if (result == null) {
       return [];
     }
@@ -36,9 +51,9 @@ export class StorageService {
 
   setExternalPlans(value: Plan[]) {
     if (value == null) {
-      this.remove("externalPlans");
+      this.remove(Key[Key.ExternalPlans]);
     } else {
-      this.set("externalPlans", value);
+      this.set(Key[Key.ExternalPlans], value);
     }
   }
 
