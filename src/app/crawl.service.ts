@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Plan } from './models/plan';
 import { HttpClient } from '@angular/common/http';
+import { MockData } from './mock-data';
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +24,13 @@ export class CrawlService {
   private googleSheetToPlan(json): Plan[] {
     return json.feed.entry.map(entry =>
       new Plan({
-        id: Math.random().toString(16).slice(2),
+        id: MockData.randId(),
         title: entry.gsx$name.$t,
         origin: entry.gsx$page.$t,
-        formats: "pdf"
+        formats: "pdf",
+        starredNumber: MockData.randNumber(),
+        forkedNumber: MockData.randNumber(),
+        lastchangeAt: new Date('2020-08-30'),
       }));
   }
 }
