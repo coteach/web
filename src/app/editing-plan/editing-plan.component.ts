@@ -5,6 +5,7 @@ import { Plan } from '../models/plan';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../app.service';
 import { RouterLink } from '../constant';
+import { Pipe, PipeTransform } from '@angular/core';
 
 export declare type Params = {
   id: string;
@@ -26,6 +27,12 @@ export class EditingPlanComponent implements OnInit, AfterViewInit {
   @ViewChild('editor') editor: EditorComponent;
 
   plan: Plan = new Plan();
+  message: string;
+  messages: string[] = [
+    "嘉豪： 要參加 Demo day 嗎",
+    "張振： Go~Go~",
+    "孟庭： 我也可以參加"
+  ];
 
   ngOnInit(): void {
     let initPlan = (params: Params) =>
@@ -46,6 +53,11 @@ export class EditingPlanComponent implements OnInit, AfterViewInit {
     this.service.putPlan(this.plan);
 
     this.router.navigate([RouterLink.MyPlans]);
+  }
+
+  talk(): void {
+    this.messages.push("孟庭： " + this.message);
+    this.message = "";
   }
 }
 

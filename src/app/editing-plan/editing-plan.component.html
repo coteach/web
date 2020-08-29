@@ -116,9 +116,17 @@
     </div>
 </mat-toolbar>
 
-<mat-drawer-container [hasBackdrop]="false">
+<mat-drawer-container [hasBackdrop]="false" autosize>
     <mat-drawer-content>
         <editor #editor [initialValue]="plan.content"></editor>
     </mat-drawer-content>
-    <mat-drawer #drawer [mode]="push" position="end">I'm a drawer</mat-drawer>
+    <mat-drawer #drawer [mode]="push" position="end">
+        <div class="messages" #records>
+            <p *ngFor="let mes of messages"> {{ mes }}</p>
+        </div>
+
+        <mat-form-field appearance="outline">
+            <textarea matInput placeholder="Type here to chat" [(ngModel)]="message" (keyup.enter)="talk()"> </textarea>
+        </mat-form-field>
+    </mat-drawer>
 </mat-drawer-container>

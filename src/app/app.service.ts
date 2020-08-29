@@ -142,7 +142,6 @@ export class AppService {
   async putPlan(plan: Plan): Promise<void> {
     let plans = (await this.plansAsync).filter(value => value.id != plan.id);
     plans.push(plan);
-    console.log(123);
     this.storage.setPlans(plans);
   }
 
