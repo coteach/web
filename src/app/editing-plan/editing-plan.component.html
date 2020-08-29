@@ -96,7 +96,7 @@
     <mat-drawer-content>
         <editor #editor [initialValue]="plan.content"></editor>
     </mat-drawer-content>
-    <mat-drawer #drawer [mode]="push" position="end">
+    <mat-drawer #drawer mode="over" position="end">
         <div class="messages" #records>
             <p *ngFor="let mes of messages"> {{ mes }}</p>
         </div>
