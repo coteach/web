@@ -3,33 +3,33 @@ import { RouterLink } from '../constant';
 import { Router } from '@angular/router';
 import { AppService } from '../app.service';
 @Component({
-  selector: 'app-scaffold',
-  templateUrl: './scaffold.component.html',
-  styleUrls: ['./scaffold.component.scss']
+	selector: 'app-scaffold',
+	templateUrl: './scaffold.component.html',
+	styleUrls: ['./scaffold.component.scss']
 })
 export class ScaffoldComponent {
-  constructor(
-    private router: Router,
-    private appService: AppService,
-  ) { }
+	constructor(
+		private router: Router,
+		private appService: AppService,
+	) { }
 
-  routerLink = RouterLink;
-  keyword = '';
+	routerLink = RouterLink;
+	keyword = '';
 
-  newPlan() {
-    this.appService.getNew().then((id) => {
-      this.router.navigate([RouterLink.EditingPlan, id]);
-    });
-  }
+	newPlan() {
+		this.appService.getNew().then((id) => {
+			this.router.navigate([RouterLink.EditingPlan, id]);
+		});
+	}
 
-  onSearch(): void {
-    let isKeywordEmpty = this.keyword.trim().length == 0;
-    if (isKeywordEmpty) return;
+	onSearch(): void {
+		let isKeywordEmpty = this.keyword.trim().length == 0;
+		if (isKeywordEmpty) return;
 
-    this.router.navigate([RouterLink.Search], { queryParams: { q: this.keyword } });
-  }
+		this.router.navigate([RouterLink.Search], { queryParams: { q: this.keyword } });
+	}
 
-  resetKeyword() {
-    this.keyword = "";
-  }
+	resetKeyword() {
+		this.keyword = "";
+	}
 }
