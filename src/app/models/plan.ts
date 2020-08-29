@@ -7,6 +7,8 @@ interface PlanParams {
     tags?: string;
     origin?: string;
     formats?: string;
+    starredNumber?: number;
+    forkedNumber?: number;
     lastchangeAt?: Date;
 }
 
@@ -50,6 +52,14 @@ export class Plan {
     * 外部來源檔案格式
     */
     formats: string;
+    /**
+    * 被標記數量
+    */
+    starredNumber: number;
+    /**
+     * 被 fork 數量
+     */
+    forkedNumber?: number;
     /**
      * 最後修改時間
      */

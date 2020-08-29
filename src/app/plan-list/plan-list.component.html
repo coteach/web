@@ -1,24 +1,25 @@
-<mat-card *ngFor="let plan of dataSource">
+<mat-card class="example-card" *ngFor="let plan of dataSource">
     <mat-card-header>
-        <mat-card-title>{{plan.title}}</mat-card-title>
+        <mat-card-title>
+            <span> {{ plan.title }} </span>
+            <span *ngIf="plan.isExternal">
+                <mat-icon>picture_as_pdf</mat-icon>
+            </span>
+        </mat-card-title>
 
         <mat-card-subtitle>
-            {{ plan.formats }}
+            <span>
+                <mat-icon>star_border</mat-icon> {{ plan.starredNumber }}
+            </span>
+
+            <span *ngIf="!plan.isExternal">
+                <mat-icon>alt_route</mat-icon> {{ plan.forkedNumber }}
+            </span>
         </mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
-        <mat-chip-list>
-            <span>
-                <mat-icon>star_border</mat-icon> 123
-            </span>
-            <span>
-                <mat-icon>visibility</mat-icon> 123
-            </span>
-            <span *ngIf="!plan.isExternal">
-                <mat-icon>alt_route</mat-icon> 123
-            </span>
-        </mat-chip-list>
+        {{ plan.content?.substr(0, 250) }}
     </mat-card-content>
 
     <mat-card-actions align="end">

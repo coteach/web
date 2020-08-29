@@ -1,12 +1,24 @@
-mat-card {
+.mat-card {
     display: inline-block;
     width: calc(100vw - 350px);
     margin: 16px;
-}
 
-mat-card-subtitle {
-    mat-icon {
-        font-size: 1.25em;
-        vertical-align: top;
+    .mat-card-title {
+        .mat-icon {
+            vertical-align: text-bottom;
+        }
+    }
+
+    .mat-card-subtitle {
+        span {
+            margin-left: 4px;
+
+            .mat-icon {
+                width: unset;
+                height: unset;
+                font-size: 16px;
+                vertical-align: text-bottom;
+            }
+        }
     }
 }
