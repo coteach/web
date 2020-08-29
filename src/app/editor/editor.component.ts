@@ -34,7 +34,17 @@ enum ToobarItemNames {
   Codeblock = "codeblock",
 }
 
-const defaultToolbarItems: string[] = [
+function createLastButton(text: string) {
+  const button = document.createElement('button');
+
+  button.className = 'last';
+  button.style.color = 'black';
+  button.innerText = text;
+
+  return button;
+}
+
+const defaultToolbarItems: (string | any)[] = [
   ToobarItemNames.Heading,
   ToobarItemNames.Bold,
   ToobarItemNames.Italic,
@@ -54,6 +64,35 @@ const defaultToolbarItems: string[] = [
   ToobarItemNames.Divider,
   ToobarItemNames.Code,
   ToobarItemNames.Codeblock,
+  ToobarItemNames.Divider,
+  {
+    type: 'button',
+    options: {
+      el: createLastButton('公'),
+      tooltip: '插入公式'
+    }
+  },
+  {
+    type: 'button',
+    options: {
+      el: createLastButton('流'),
+      tooltip: '插入流程圖'
+    }
+  },
+  {
+    type: 'button',
+    options: {
+      el: createLastButton('課'),
+      tooltip: '插入課綱核心素養'
+    }
+  },
+  {
+    type: 'button',
+    options: {
+      el: createLastButton('授'),
+      tooltip: '插入授權方式'
+    }
+  }
 ];
 
 @Component({
