@@ -60,6 +60,17 @@
     }
 }
 
+::ng-deep .cdk-overlay-container {
+    .mat-menu-panel {
+        max-width: unset;
+    }
+
+    .mat-menu-content {
+        padding: 0 !important;
+        width: 300px !important;
+    }
+}
+
 .mat-drawer-container {
     height: calc(100% - 66px);
 
