@@ -49,6 +49,10 @@ export class ViewingPlanComponent implements OnInit {
     return this.myId != plan.userId && !plan.isExternal;
   }
 
+  canDelete(plan: Plan): boolean {
+    return this.myId == plan.userId;
+  }
+
   setStar(plan: Plan): void {
     plan.starred = !plan.starred;
     this.service.putPlan(plan);
@@ -77,5 +81,9 @@ export class ViewingPlanComponent implements OnInit {
 
     this.service.putPlan(plan);
     this.router.navigate([RouterLink.EditingPlan, plan.id]);
+  }
+
+  deletePlan(plan: Plan): void {
+    this.service.deleteMyPlan(plan.id);
   }
 }

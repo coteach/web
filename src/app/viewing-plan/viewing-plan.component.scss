@@ -26,4 +26,14 @@ mat-toolbar {
 
 .content {
     padding: 0 calc((100vw - 800px)/2);
+
+    .mat-card {
+        margin-top: 16px;
+
+        .mat-card-header {
+            .mat-card-avatar {
+                font-size: 48px;
+            }
+        }
+    }
 }

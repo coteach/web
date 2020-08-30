@@ -3,7 +3,7 @@
     <span class="spacer"></span>
 
     <div class="actions">
-        <button mat-icon-button (click)="forkPlan(plan)">
+        <!-- <button mat-icon-button (click)="forkPlan(plan)">
             <mat-icon>alt_route</mat-icon>
         </button>
 
@@ -22,7 +22,7 @@
 
         <button mat-icon-button>
             <mat-icon>share</mat-icon>
-        </button>
+        </button> -->
 
         <button mat-icon-button>
             <mat-icon>notifications</mat-icon>
@@ -35,6 +35,57 @@
 </mat-toolbar>
 
 <div class="content">
+    <mat-card>
+        <mat-card-header>
+            <mat-icon mat-card-avatar>face</mat-icon>
+            <mat-card-title>Meng-Ting Tsai</mat-card-title>
+            <mat-card-subtitle>Aug 30, 2020 · 8 min read</mat-card-subtitle>
+        </mat-card-header>
+
+        <!-- <mat-card-content>
+            <p>
+                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                bred for hunting.
+            </p>
+        </mat-card-content> -->
+
+        <mat-card-actions align="end">
+            <button mat-icon-button (click)="setStar(plan)">
+                <mat-icon *ngIf="plan.starred"> star </mat-icon>
+                <mat-icon *ngIf="!plan.starred"> star_border </mat-icon>
+            </button>
+
+            <button mat-icon-button (click)="downloadPlan(plan)">
+                <mat-icon>cloud_download</mat-icon>
+            </button>
+
+            <button mat-icon-button>
+                <mat-icon>share</mat-icon>
+            </button>
+
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item *ngIf="canFork(plan)" (click)="forkPlan(plan)">
+                    <mat-icon>alt_route</mat-icon>
+                    <span>Fork</span>
+                </button>
+
+                <button mat-menu-item *ngIf="canEdit(plan)" [routerLink]="[routerLink.EditingPlan, plan.id]">
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit</span>
+                </button>
+
+                <button mat-menu-item *ngIf="canDelete(plan)" (click)="deletePlan(plan)">
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete</span>
+                </button>
+            </mat-menu>
+        </mat-card-actions>
+    </mat-card>
 
     <viewer #viewer *ngIf="plan != null" [initialValue]="plan.content"></viewer>
 </div>
