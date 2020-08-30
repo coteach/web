@@ -12,6 +12,13 @@
             <button mat-icon-button>
                 <mat-icon>label</mat-icon>
             </button>
+
+            <button mat-button [matMenuTriggerFor]="menu">
+                Add License
+            </button>
+            <mat-menu #menu="matMenu">
+                <img src="https://i.imgur.com/xLC2AZe.png" style="width: 283px;">
+            </mat-menu>
         </div>
 
         <div class="menu">

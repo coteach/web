@@ -85,13 +85,6 @@ const defaultToolbarItems: (string | any)[] = [
       el: createLastButton('課'),
       tooltip: '插入課綱核心素養'
     }
-  },
-  {
-    type: 'button',
-    options: {
-      el: createLastButton('授'),
-      tooltip: '插入授權方式'
-    }
   }
 ];
 
