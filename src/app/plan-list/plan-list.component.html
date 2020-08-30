@@ -23,18 +23,6 @@
     </mat-card-content>
 
     <mat-card-actions align="end">
-        <button mat-icon-button disabled>
-            <mat-icon>link</mat-icon>
-        </button>
-
-        <button mat-icon-button disabled>
-            <mat-icon>group_add</mat-icon>
-        </button>
-
-        <button mat-icon-button disabled>
-            <mat-icon>cloud_download</mat-icon>
-        </button>
-
         <button mat-icon-button (click)="setStar(plan)">
             <mat-icon *ngIf="plan.starred"> star </mat-icon>
             <mat-icon *ngIf="!plan.starred"> star_border </mat-icon>
@@ -48,16 +36,34 @@
             <mat-icon>visibility</mat-icon>
         </button>
 
-        <button mat-icon-button [disabled]="!canEdit(plan)" [routerLink]="[routerLink.EditingPlan, plan.id]">
-            <mat-icon>edit</mat-icon>
+        <button mat-icon-button>
+            <mat-icon>share</mat-icon>
         </button>
 
-        <button mat-icon-button [disabled]="!canFork(plan)" (click)="forkPlan(plan)">
-            <mat-icon>alt_route</mat-icon>
+        <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="!plan.isExternal">
+            <mat-icon>more_vert</mat-icon>
         </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item *ngIf="canFork(plan)" (click)="forkPlan(plan)">
+                <mat-icon>alt_route</mat-icon>
+                <span>Fork</span>
+            </button>
 
-        <button mat-icon-button [disabled]="!canDelete(plan)" (click)="deletePlan(plan)">
-            <mat-icon>delete</mat-icon>
-        </button>
+            <button mat-menu-item *ngIf="canEdit(plan)" [routerLink]="[routerLink.EditingPlan, plan.id]">
+                <mat-icon>edit</mat-icon>
+                <span>Edit</span>
+            </button>
+
+            <button mat-menu-item *ngIf="!plan.isExternal" (click)="downloadPlan(plan)">
+                <mat-icon>cloud_download</mat-icon>
+                <span>Download PDF</span>
+            </button>
+
+            <button mat-menu-item *ngIf="canDelete(plan)" (click)="deletePlan(plan)">
+                <mat-icon>delete</mat-icon>
+                <span>Delete</span>
+            </button>
+        </mat-menu>
+
     </mat-card-actions>
 </mat-card>

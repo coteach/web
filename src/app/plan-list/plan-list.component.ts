@@ -58,4 +58,19 @@ export class PlanListComponent implements OnInit {
     this.service.putPlan(plan);
     this.router.navigate([RouterLink.EditingPlan, plan.id]);
   }
+
+  async downloadPlan(plan: Plan): Promise<void> {
+    let file = new Blob([plan.content], { type: 'application/pdf' });
+    let url = URL.createObjectURL(file);
+
+    let anchor = document.createElement("a");
+    anchor.download = plan.title;
+    anchor.href = url;
+
+    document.body.appendChild(anchor);
+    anchor.click();
+
+    document.body.removeChild(anchor);
+    window.URL.revokeObjectURL(url);
+  }
 }
