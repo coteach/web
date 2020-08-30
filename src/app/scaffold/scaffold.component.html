@@ -1,12 +1,21 @@
 <mat-toolbar color="primary">
   <h1>Lesson Plan Hub</h1>
 
-  <mat-form-field appearance="outline">
-    <button mat-icon-button (click)="onSearch()">
-      <mat-icon>search</mat-icon>
+	<mat-form-field appearance="outline">
+		<button mat-icon-button (click)="onSearch()">
+			<mat-icon>search</mat-icon>
+		</button>
+
+		<input type="text" matInput placeholder="Search" (keyup.enter)="onSearch()" [(ngModel)]="keyword">
+
+		<button mat-icon-button [matMenuTriggerFor]="searchMenu">
+			<mat-icon>arrow_drop_down</mat-icon>
     </button>
-    <input type="text" matInput placeholder="Search" (keyup.enter)="onSearch()" [(ngModel)]="keyword">
-  </mat-form-field>
+    
+		<mat-menu #searchMenu="matMenu" class="searchMenu"  xPosition="before">
+			<img src="https://i.imgur.com/pJtijzH.png" width="600">
+		</mat-menu>
+	</mat-form-field>
 
   <span class="spacer"></span>
 

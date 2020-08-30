@@ -56,6 +56,7 @@ mat-toolbar {
         }
 
         input {
+            width: 496px;
             margin-left: 4px;
         }
     }
@@ -88,10 +89,12 @@ mat-sidenav-container {
     }
 }
 
-::ng-deep .mat-menu-panel {
+// 通知
+::ng-deep #cdk-overlay-1 .mat-menu-panel {
     width: 500px !important;
     max-width: none !important;
 }
+
 
 ::ng-deep .mat-expansion-panel {
     margin: 10px !important;
@@ -108,3 +111,15 @@ mat-sidenav-container {
     justify-content: center !important;
     align-items: center !important;
 }
+
+// 進階搜尋
+::ng-deep #cdk-overlay-0{
+    margin-top: 9px;
+    margin-left: 5px;
+
+    .mat-menu-panel{
+        width: 600px !important;
+        max-width: none !important;
+    }
+}
+
