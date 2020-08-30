@@ -15,7 +15,7 @@ import { SearchComponent } from './search/search.component';
 import { StarredComponent } from './starred/starred.component';
 import { PlanListComponent } from './plan-list/plan-list.component';
 import { ViewerComponent } from './viewer/viewer.component';
-import { EditingPlanComponent } from './editing-plan/editing-plan.component';
+import { EditingPlanComponent, DialogContentExampleDialog } from './editing-plan/editing-plan.component';
 import { ViewingPlanComponent } from './viewing-plan/viewing-plan.component';
 
 @NgModule({
@@ -30,6 +30,7 @@ import { ViewingPlanComponent } from './viewing-plan/viewing-plan.component';
     ViewerComponent,
     EditingPlanComponent,
     ViewingPlanComponent,
+    DialogContentExampleDialog,
   ],
   imports: [
     BrowserModule,

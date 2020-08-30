@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../app.service';
 import { RouterLink } from '../constant';
 import { Pipe, PipeTransform } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 export declare type Params = {
   id: string;
@@ -18,6 +19,7 @@ export declare type Params = {
 })
 export class EditingPlanComponent implements OnInit, AfterViewInit {
   constructor(
+    private dialog: MatDialog,
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
@@ -77,6 +79,25 @@ export class EditingPlanComponent implements OnInit, AfterViewInit {
 
     setTimeout(() => this.width = Math.max(minWidth, newWidth));
   }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogContentExampleDialog, {
+      width: '100vw',
+      height: '100vh',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }
+
+@Component({
+  selector: 'dialog-content-example-dialog',
+  templateUrl: 'dialog-content-example-dialog.html',
+})
+export class DialogContentExampleDialog { }
 
 
