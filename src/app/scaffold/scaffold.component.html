@@ -1,15 +1,19 @@
-<mat-toolbar color="primary">
-    <h1>Lesson Plan Hub</h1>
+<mat-toolbar color=primary>
+  <div class="home-button">
+    <button mat-button disableRipple>Plan Hub</button>
+  </div>
+
+  <div class="search-bar">
+    <button mat-icon-button color="primary">
+      <mat-icon>search</mat-icon>
+    </button>
+
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="Search">
+    </mat-form-field>
+
+    <button mat-icon-button color="primary">
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+  </div>
 </mat-toolbar>
-
-<mat-sidenav-container>
-    <mat-sidenav opened mode="side">
-        <button mat-raised-button color="primary">
-            <mat-icon>add</mat-icon> New
-        </button>
-    </mat-sidenav>
-
-    <mat-sidenav-content>
-        <router-outlet></router-outlet>
-    </mat-sidenav-content>
-</mat-sidenav-container>

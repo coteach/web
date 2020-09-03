@@ -1,32 +1,67 @@
 @import '~@angular/material/theming';
 
-::ng-deep app-scaffold {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+@mixin small {
+  font-size: 16px;
+
+  .mat-form-field-wrapper {
+    margin: 0;
+    padding-bottom: 0;
+
+    .mat-form-field-flex {
+      padding: 0 .75em 0 .75em;
+
+      .mat-form-field-outline {
+        bottom: -9px;
+        top: -9px;
+      }
+
+      .mat-form-field-infix {
+        border-top: unset;
+        padding: 0;
+      }
+    }
+  }
 }
 
-mat-toolbar {
-    @include mat-elevation(4);
+@mixin no-outline {
+  .mat-form-field-outline {
+    display: none;
+  }
 }
 
-mat-sidenav-container {
-    flex: 1;
+@mixin light-theme {
+  background-color: map-get($mat-light-theme-background, 'background');
+  color: $dark-primary-text;
+}
 
-    mat-sidenav {
-        width: 260px;
+.mat-toolbar {
+  @include mat-elevation(4);
 
-        button {
-            margin-top: 16px;
-            margin-left: 16px;
-        }
+  padding: 8px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  .home-button {
+    height: calc(64px - 16px);
+    width: 240px;
+
+    .mat-button {
+      height: 100%;
+      font-size: 20px;
     }
+  }
 
-    mat-sidenav-content {
-        padding: 16px;
+  .search-bar {
+    @include light-theme;
+
+    padding: 4px;
+
+    .mat-form-field-appearance-outline {
+      @include small;
+      @include no-outline;
+
+      width: 620px;
     }
+  }
 }
