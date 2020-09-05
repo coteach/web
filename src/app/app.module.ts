@@ -7,11 +7,13 @@ import { MaterialModule } from './material-module';
 
 import { AppComponent } from './app.component';
 import { ScaffoldComponent } from './scaffold/scaffold.component';
+import { SearchbarComponent } from './searchbar/searchbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ScaffoldComponent,
+    SearchbarComponent,
   ],
   imports: [
     BrowserModule,
