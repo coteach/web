@@ -6,11 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material-module';
 
 import { AppComponent } from './app.component';
+import { ScaffoldComponent } from './scaffold/scaffold.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppComponent
+    ScaffoldComponent,
   ],
   imports: [
     BrowserModule,
