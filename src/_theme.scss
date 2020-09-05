@@ -1,0 +1,41 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$primary-colors: mat-palette($mat-blue);
+$accent-colors: mat-palette($mat-cyan);
+$light-theme: mat-light-theme($primary-colors, $accent-colors);
+$dark-theme: mat-dark-theme($primary-colors, $accent-colors);
+
+@include mat-core();
+
+.light-theme {
+    @include angular-material-theme($light-theme);
+}
+
+.dark-theme {
+    @include angular-material-theme($dark-theme);
+}
+
+.mat-form-field.hidden-line {
+
+    .mat-form-field-underline,
+    .mat-form-field-outline {
+        display: none;
+    }
+}
+
+.mat-form-field.mini {
+    .mat-form-field-wrapper {
+        padding-bottom: 0;
+        margin: 0;
+    }
+
+    .mat-form-field-outline~.mat-form-field-infix {
+        padding: 0;
+    }
+
+    .mat-form-field-underline {
+        bottom: 0;
+    }
+}

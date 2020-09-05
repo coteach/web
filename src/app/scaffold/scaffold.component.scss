@@ -1,42 +1,7 @@
 @import '~@angular/material/theming';
-
-@mixin small {
-  font-size: 16px;
-
-  .mat-form-field-wrapper {
-    margin: 0;
-    padding-bottom: 0;
-
-    .mat-form-field-flex {
-      padding: 0 .75em 0 .75em;
-
-      .mat-form-field-outline {
-        bottom: -9px;
-        top: -9px;
-      }
-
-      .mat-form-field-infix {
-        border-top: unset;
-        padding: 0;
-      }
-    }
-  }
-}
-
-@mixin no-outline {
-  .mat-form-field-outline {
-    display: none;
-  }
-}
-
-@mixin light-theme {
-  background-color: map-get($mat-light-theme-background, 'background');
-  color: $dark-primary-text;
-}
+@import '../../theme';
 
 .mat-toolbar {
-  @include mat-elevation(4);
-
   padding: 8px;
   position: sticky;
   top: 0;
@@ -53,15 +18,19 @@
   }
 
   .search-bar {
-    @include light-theme;
+    font-size: 16px;
+    height: 42px;
+    padding-top: 6px;
+    width: 620px;
+  }
+}
 
-    padding: 4px;
+.light-theme {
+  .search-bar {
+    $background: map-get($light-theme, background);
+    $foreground: map-get($light-theme, foreground);
 
-    .mat-form-field-appearance-outline {
-      @include small;
-      @include no-outline;
-
-      width: 620px;
-    }
+    background-color: map-get($background, background);
+    color: map-get($foreground, text);
   }
 }
