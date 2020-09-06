@@ -1,0 +1,13 @@
+<section class="mission-statement">
+    <h1>
+        我們彙整了網路上的教案資源。
+    </h1>
+</section>
+
+<section class="tag-list">
+    <mat-chip-list selectable="false">
+        <mat-chip *ngFor="let tag of tags" disableRipple>
+            <mat-chip-avatar [style.background-color]="tag.color">#</mat-chip-avatar> {{ tag.name }}
+        </mat-chip>
+    </mat-chip-list>
+</section>
