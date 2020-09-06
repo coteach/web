@@ -8,12 +8,14 @@ import { MaterialModule } from './material-module';
 import { AppComponent } from './app.component';
 import { ScaffoldComponent } from './scaffold/scaffold.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ScaffoldComponent,
     SearchbarComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
