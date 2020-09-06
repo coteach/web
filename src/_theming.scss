@@ -1,0 +1,6 @@
+@import '~@angular/material/theming';
+
+$primary-colors: mat-palette($mat-blue);
+$accent-colors: mat-palette($mat-cyan);
+$light-theme: mat-light-theme($primary-colors, $accent-colors);
+$dark-theme: mat-dark-theme($primary-colors, $accent-colors);

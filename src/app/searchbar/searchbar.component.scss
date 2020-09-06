@@ -1,7 +1,9 @@
-@import '~@angular/material/theming';
-@import '../../theme';
+@import '../../theming';
 
-.searchbar {
+$background: map-get($light-theme, background);
+$foreground: map-get($light-theme, foreground);
+
+:host {
     font-size: 16px;
     height: 48px;
     width: 620px;
@@ -12,12 +14,7 @@
     }
 }
 
-.light-theme {
-    .searchbar {
-        $background: map-get($light-theme, background);
-        $foreground: map-get($light-theme, foreground);
-
-        background-color: map-get($background, background);
-        color: map-get($foreground, text);
-    }
+:host-context(.light-theme) {
+    background-color: map-get($background, background);
+    color: map-get($foreground, text);
 }

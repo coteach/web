@@ -1,11 +1,41 @@
-@import '~@angular/material/theming';
-@import 'theme';
+@import 'theming';
 
-html {
-    @extend .mat-typography;
-}
+@include mat-core();
 
 body {
+    @extend .mat-typography;
+
     margin: 0;
     height: 100%;
+}
+
+.light-theme {
+    @include angular-material-theme($light-theme);
+}
+
+.dark-theme {
+    @include angular-material-theme($dark-theme);
+}
+
+.mat-form-field.hidden-line {
+
+    .mat-form-field-underline,
+    .mat-form-field-outline {
+        display: none;
+    }
+}
+
+.mat-form-field.mini {
+    .mat-form-field-wrapper {
+        padding-bottom: 0;
+        margin: 0;
+    }
+
+    .mat-form-field-outline~.mat-form-field-infix {
+        padding: 0;
+    }
+
+    .mat-form-field-underline {
+        bottom: 0;
+    }
 }
