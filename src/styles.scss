@@ -2,6 +2,9 @@
 
 @include mat-core();
 
+$light-theme-background: map-get($light-theme, background);
+$dark-theme-background: map-get($dark-theme, background);
+
 body {
     @extend .mat-typography;
 
@@ -11,10 +14,14 @@ body {
 
 .light-theme {
     @include angular-material-theme($light-theme);
+
+    background-color: map-get($light-theme-background, background);
 }
 
 .dark-theme {
     @include angular-material-theme($dark-theme);
+
+    background-color: map-get($dark-theme-background, background);
 }
 
 .mat-form-field.hidden-line {
