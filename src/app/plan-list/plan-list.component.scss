@@ -1,0 +1,64 @@
+@import '../../theming';
+
+$foreground: map-get($light-theme, foreground);
+$sidenav-max-width: 330px;
+
+:host {
+    display: block;
+
+    ::ng-deep .mat-card {
+        &:hover .mat-card-header-text {
+            margin: 0;
+            color: map-get($accent-colors, darker);
+        }
+
+        .mat-card-header-text {
+            margin: 0;
+        }
+    }
+}
+
+.result-stats {
+    padding-left: 8px;
+    color: map-get($foreground, secondary-text);
+}
+
+.plan-list-wrapper {
+    margin-left: $sidenav-max-width;
+    max-width: 620px;
+    padding: 8px;
+}
+
+.mat-card {
+    cursor: pointer;
+    margin-top: 16px;
+
+    .mat-card-header {
+        color: map-get($foreground, text);
+        flex-direction: column-reverse;
+
+        .meta {
+            @include center-element($horizontal: false);
+
+            font-size: 12px;
+            padding-bottom: 8px;
+
+            * {
+                margin-right: 4px;
+            }
+
+            .mat-icon {
+                font-size: 16px;
+            }
+
+            img {
+                width: 16px;
+                height: 16px;
+            }
+        }
+    }
+
+    .mat-card-content {
+        color: map-get($foreground, secondary-text);
+    }
+}
