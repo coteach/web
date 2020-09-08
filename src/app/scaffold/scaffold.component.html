@@ -3,7 +3,7 @@
     <button mat-button>Plan Hub</button>
   </div>
 
-  <searchbar></searchbar>
+  <searchbar [(keyword)]="keyword" (search)="searchPlan()"></searchbar>
 </mat-toolbar>
 
 <router-outlet></router-outlet>
