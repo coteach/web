@@ -12,6 +12,7 @@ import { ScaffoldComponent } from './scaffold/scaffold.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { HomeComponent } from './home/home.component';
 import { PlanListComponent } from './plan-list/plan-list.component';
+import { SearchingComponent } from './searching/searching.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { PlanListComponent } from './plan-list/plan-list.component';
     SearchbarComponent,
     HomeComponent,
     PlanListComponent,
+    SearchingComponent,
   ],
   imports: [
     BrowserModule,
