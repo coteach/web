@@ -1,10 +1,11 @@
 @import '../../theming';
 
 $foreground: map-get($light-theme, foreground);
-$sidenav-max-width: 330px;
 
 :host {
     display: block;
+    max-width: 620px;
+    padding: 8px;
 
     ::ng-deep .mat-card {
         &:hover .mat-card-header-text {
@@ -21,12 +22,6 @@ $sidenav-max-width: 330px;
 .result-stats {
     padding-left: 8px;
     color: map-get($foreground, secondary-text);
-}
-
-.plan-list-wrapper {
-    margin-left: $sidenav-max-width;
-    max-width: 620px;
-    padding: 8px;
 }
 
 .mat-card {

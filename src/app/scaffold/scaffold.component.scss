@@ -1,14 +1,14 @@
-$sidenav-max-width: 330px;
-
 .mat-toolbar {
+
+  .mat-toolbar-row {
+    justify-content: center;
+  }
+
   padding: 8px;
-  position: sticky;
-  top: 0;
   z-index: 1;
 
   .home-button {
     height: 100%;
-    width: $sidenav-max-width;
 
     .mat-button {
       height: 100%;
