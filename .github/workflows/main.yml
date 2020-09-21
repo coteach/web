@@ -15,3 +15,5 @@ jobs:
       uses: AhsanAyaz/angular-deploy-gh-pages-actions
       with:
         github_access_token: ${{ secrets.DEPLOY_SECRET }}
+        build_configuration: production
+        angular_project_dir: ./
