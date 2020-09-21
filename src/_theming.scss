@@ -1,0 +1,40 @@
+@import '~@angular/material/theming';
+
+$primary-colors: mat-palette($mat-blue);
+$accent-colors: mat-palette($mat-cyan);
+$light-theme: mat-light-theme($primary-colors, $accent-colors);
+$dark-theme: mat-dark-theme($primary-colors, $accent-colors);
+
+@mixin center-element($horizontal: true, $vertical: true) {
+    display: flex;
+
+    @if $horizontal {
+        justify-content: center;
+    }
+
+    @if $vertical {
+        align-items: center;
+    }
+}
+
+@mixin scale-mat-chip($new-font-size-px) {
+    $default: (font-size: 14px,
+            border-radius: 16px,
+            min-height: 32px,
+            avatar-size: 24px);
+
+    $font-size: $new-font-size-px + 0px;
+    $scale: $font-size / map-get($default, font-size);
+    $avatar-size: $scale * map-get($default, avatar-size);
+
+    .mat-chip {
+        font-size: $font-size;
+        border-radius: $scale * map-get($default, border-radius);
+        min-height: $scale * map-get($default, min-height);
+
+        .mat-chip-avatar {
+            width: $avatar-size;
+            height: $avatar-size;
+        }
+    }
+}

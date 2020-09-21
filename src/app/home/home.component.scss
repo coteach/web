@@ -1,0 +1,39 @@
+@import '../../theming';
+
+$foreground: map-get($light-theme, foreground);
+
+.mission-statement {
+    @include center-element();
+
+    min-height: 320px;
+    text-align: center;
+
+    h1 {
+        color: map-get($foreground, text);
+        font-size: 3.125rem;
+        font-weight: bold;
+        line-height: 4.0625rem;
+        max-width: 720px;
+    }
+}
+
+.tag-list {
+    @include scale-mat-chip($new-font-size-px: 20);
+
+    margin: 16px;
+
+    .mat-chip {
+        color: map-get($foreground, secondary-text);
+
+        .mat-chip-avatar {
+            color: white;
+        }
+    }
+}
+
+:host ::ng-deep .mat-chip-list-wrapper {
+    @include center-element($vertical: false);
+
+    margin: 0 auto;
+    max-width: 1200px;
+}

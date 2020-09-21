@@ -1,0 +1,11 @@
+<mat-form-field appearance="outline" class="mini hidden-line">
+    <button mat-icon-button color="primary" matPrefix>
+        <mat-icon>search</mat-icon>
+    </button>
+
+    <input matInput placeholder="Search" [(ngModel)]="keyword" (input)="emitKeyword()" (keyup.enter)="emitSearch()">
+
+    <button class="future" mat-icon-button color="primary" matSuffix>
+        <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+</mat-form-field>

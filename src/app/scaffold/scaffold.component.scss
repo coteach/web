@@ -1,0 +1,18 @@
+.mat-toolbar {
+
+  .mat-toolbar-row {
+    justify-content: center;
+  }
+
+  padding: 8px;
+  z-index: 1;
+
+  .home-button {
+    height: 100%;
+
+    .mat-button {
+      height: 100%;
+      font-size: 1.5em;
+    }
+  }
+}

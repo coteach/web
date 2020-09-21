@@ -1,0 +1,20 @@
+<span class="result-stats">About {{ dataSource.length }} results</span>
+
+<mat-card *ngFor="let item of dataSource" (click)="openLink(item)">
+
+    <mat-card-header>
+        <div class="meta">
+            <mat-icon *ngIf="!item.metaImg" inline="true">public</mat-icon>
+
+            <img *ngIf="item.metaImg" [src]="item.metaImg">
+
+            {{ item.metaText}}
+        </div>
+
+        <mat-card-title> {{ item.title}} </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        {{ item.content?.slice(0, 100) }}
+    </mat-card-content>
+</mat-card>
