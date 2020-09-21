@@ -31,4 +31,14 @@ export class Plan {
     constructor(params?: PlanParams) {
         Object.assign(this, params);
     }
+
+    static from(json): Plan {
+        let plan = Object.assign(new Plan(), json);
+        plan.originId = json.origin_id;
+
+        return plan;
+    }
+
+    static fromArray(json): Plan[] { return Object.values(json).map<Plan>((p) => this.from(p)); }
+
 }
