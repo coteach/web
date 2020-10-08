@@ -17,28 +17,55 @@ export class SearchingComponent implements OnInit {
   ) { }
 
   planList: PlanListItem[] = [];
+  loading = true;
+
+  get notLoading(): boolean {
+    return !this.loading
+  }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       const keyword = params["q"] + "";
 
+      if (keyword == "") return;
+
+      this.setLoading();
       Promise.all([
         this.service.searchPlan(keyword),
         this.service.getPlanOrigins(),
       ])
-        .then(([plans, origins]) => plans.map(plan => this.newPlanListItem(plan, origins)))
-        .then(plans => this.planList = plans);
+        .then(this.mapPlanListItems)
+        .then(items => this.setPlanList(items).setNotLoading());
     });
   }
 
-  private newPlanListItem(plan: Plan, origins: PlanOrigin[]): PlanListItem {
-    const origin = origins.find(origin => origin.id == plan.originId);
+  mapPlanListItems([plans, origins]: [Plan[], PlanOrigin[]]): PlanListItem[] {
+    let newPlanListItem = (plan: Plan, origins: PlanOrigin[]) => {
+      const origin = origins.find(origin => origin.id == plan.originId);
 
-    return <PlanListItem>{
-      metaImg: origin.logo,
-      metaText: origin.name,
-      title: plan.title,
-      link: plan.page,
-    };
+      return <PlanListItem>{
+        metaImg: origin.logo,
+        metaText: origin.name,
+        title: plan.title,
+        link: plan.page,
+      };
+    }
+
+    return plans.map(plan => newPlanListItem(plan, origins));
+  }
+
+  setLoading(value = true): SearchingComponent {
+    this.loading = value;
+    return this;
+  }
+
+  setNotLoading(value = true): SearchingComponent {
+    this.setLoading(!value);
+    return this;
+  }
+
+  setPlanList(value: PlanListItem[]): SearchingComponent {
+    this.planList = value;
+    return this;
   }
 }
