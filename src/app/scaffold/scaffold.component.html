@@ -1,13 +1,11 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <div class="home-button">
-      <button mat-button>CoTeach</button>
-    </div>
-  </mat-toolbar-row>
+<mat-toolbar>
+  <div class="home-button">
+    <button mat-icon-button>
+      <mat-icon svgIcon="logo"></mat-icon>
+    </button>
+  </div>
 
-  <mat-toolbar-row>
-    <searchbar [(keyword)]="keyword" (search)="searchPlan()"></searchbar>
-  </mat-toolbar-row>
+  <searchbar [(keyword)]="keyword" (search)="searchPlan()"></searchbar>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

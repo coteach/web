@@ -1,18 +1,24 @@
-.mat-toolbar {
+$sidenav-max-width: 330px;
 
-  .mat-toolbar-row {
-    justify-content: center;
-  }
+.mat-toolbar {
+  background-color: transparent;
 
   padding: 8px;
   z-index: 1;
 
   .home-button {
-    height: 100%;
+    margin-left: 8px;
+    width: $sidenav-max-width;
 
-    .mat-button {
-      height: 100%;
-      font-size: 1.5em;
+    .mat-icon {
+      width: 40px;
+      height: 40px;
     }
+  }
+}
+
+:host-context(.handset) {
+  .home-button {
+    display: none;
   }
 }

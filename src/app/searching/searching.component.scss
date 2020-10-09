@@ -1,4 +1,7 @@
-:host {
-    display: flex;
-    justify-content: center;
+$sidenav-max-width: calc(330px + 8px);
+
+:host-context(.web) {
+    * {
+        margin-left: $sidenav-max-width;
+    }
 }
