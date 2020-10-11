@@ -4,4 +4,8 @@ $sidenav-max-width: calc(330px + 8px);
     * {
         margin-left: $sidenav-max-width;
     }
+
+    .mat-spinner {
+        margin: 0 auto;
+    }
 }

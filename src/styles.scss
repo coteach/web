@@ -3,13 +3,22 @@
 @include mat-core();
 
 $light-theme-background: map-get($light-theme, background);
+$light-theme-foreground: map-get($light-theme, foreground);
+
 $dark-theme-background: map-get($dark-theme, background);
+$dark-theme-foreground: map-get($dark-theme, foreground);
 
 body {
     @extend .mat-typography;
 
     margin: 0;
     height: 100%;
+}
+
+.mat-snack-bar-container {
+    color: map-get($dark-theme-foreground, text);
+    background: map-get($dark-theme-background, background);
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
 }
 
 .light-theme {
