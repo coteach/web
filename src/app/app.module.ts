@@ -13,6 +13,8 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
 import { HomeComponent } from './home/home.component';
 import { PlanListComponent } from './plan-list/plan-list.component';
 import { SearchingComponent } from './searching/searching.component';
+import { CommunityComponent } from './community/community.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { SearchingComponent } from './searching/searching.component';
     HomeComponent,
     PlanListComponent,
     SearchingComponent,
+    CommunityComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

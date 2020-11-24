@@ -1,5 +1,6 @@
-.mat-toolbar {
+@import "../../theming";
 
+.mat-toolbar {
   .mat-toolbar-row {
     justify-content: center;
   }
@@ -8,11 +9,63 @@
   z-index: 1;
 
   .home-button {
-    height: 100%;
-
     .mat-button {
-      height: 100%;
       font-size: 1.5em;
+    }
+  }
+
+  .nav-links {
+    justify-content: flex-start;
+    a {
+      text-decoration: none;
+      color: #ffffff;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      li {
+        font-size: 0.8em;
+        margin: 0 0.8em;
+      }
+    }
+  }
+  .list-menu {
+    display: flex;
+  }
+  .mat-icon-button {
+    display: none;
+    justify-content: center;
+  }
+
+  &[data-isSubPage="true"] {
+    flex-direction: row;
+    .mat-toolbar-row {
+      width: auto;
+      .list-menu {
+        display: none;
+      }
+      &:first-child {
+        padding-right: 0;
+      }
+      &:nth-child(3) {
+        flex: 1 1 auto;
+        justify-content: flex-start;
+      }
+    }
+    .mat-icon-button {
+      display: flex;
+    }
+  }
+  @include breakpoint($sm) {
+    flex-wrap: wrap;
+    .nav-links {
+      position: absolute;
+    }
+    .list-menu {
+      display: none;
+    }
+    .mat-icon-button {
+      display: flex;
     }
   }
 }

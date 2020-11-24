@@ -14,7 +14,11 @@ export class ScaffoldComponent {
 
 	routerLink = RouterLink;
 	keyword: string = "";
+	isSubPage: boolean = true
 
+	changeOfRoutes():void{
+		this.isSubPage=this.router.url!==this.routerLink.Home&&!this.router.url.includes(this.routerLink.Search)
+	}
 	searchPlan(): void {
 		this.router.navigate([RouterLink.Search], { queryParams: { q: this.keyword } });
 	}
