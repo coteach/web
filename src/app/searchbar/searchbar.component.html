@@ -1,6 +1,7 @@
 <mat-form-field appearance="outline" class="mini hidden-line">
-    <button mat-icon-button color="primary" matPrefix>
-        <mat-icon>search</mat-icon>
+    <button mat-icon-button color="primary" mat-button matPrefix [routerLink]="routerLink.Home">
+        <mat-icon web>search</mat-icon>
+        <mat-icon handset svgIcon="logo"></mat-icon>
     </button>
 
     <input matInput placeholder="Search" [(ngModel)]="keyword" (input)="emitKeyword()" (keyup.enter)="emitSearch()">

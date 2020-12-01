@@ -5,12 +5,23 @@
     justify-content: center;
   }
 
-  padding: 8px;
-  z-index: 1;
+  // .mat-toolbar {
+  // background-color: transparent;
+
+  // padding: 8px;
+  // z-index: 1;
 
   .home-button {
+    margin-left: 8px;
     .mat-button {
       font-size: 1.5em;
+      font-weight: bold;
+      width: auto;
+      margin-top: -1em;
+    }
+    .mat-icon {
+      width: 60px;
+      height: 60px;
     }
   }
 
@@ -32,40 +43,69 @@
   .list-menu {
     display: flex;
   }
-  .mat-icon-button {
+  .sub-menu-button {
     display: none;
     justify-content: center;
+    align-items: center;
   }
+}
 
-  &[data-isSubPage="true"] {
-    flex-direction: row;
-    .mat-toolbar-row {
-      width: auto;
-      .list-menu {
-        display: none;
-      }
-      &:first-child {
-        padding-right: 0;
-      }
-      &:nth-child(3) {
-        flex: 1 1 auto;
-        justify-content: flex-start;
-      }
-    }
-    .mat-icon-button {
-      display: flex;
+::ng-deep .mat-menu-panel {
+  background-color: #ffffff;
+  @include mat-elevation(4);
+  a {
+    text-decoration: none;
+    color: #000000;
+    padding: 0 3em;
+    &:hover {
+      font-weight: bold;
     }
   }
-  @include breakpoint($sm) {
-    flex-wrap: wrap;
-    .nav-links {
-      position: absolute;
+}
+
+@mixin shrink-nav {
+  flex-direction: row;
+  .mat-toolbar-row {
+    width: auto;
+    &:first-child {
+      padding-right: 0;
     }
-    .list-menu {
-      display: none;
+    &:nth-child(3) {
+      flex: 1 1 auto;
+      justify-content: flex-start;
     }
-    .mat-icon-button {
-      display: flex;
+  }
+  .home-button {
+    display: none;
+  }
+  .list-menu {
+    display: none;
+  }
+  .sub-menu-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.mat-toolbar[data-isSubPage="true"] {
+  @include shrink-nav;
+  .home-button {
+    display: flex;
+    margin: 0;
+    .mat-button {
+      font-size: 1.3em;
+      margin-top: 0;
     }
+    .mat-icon {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
+:host-context(.handset) {
+  .mat-toolbar {
+    @include shrink-nav;
   }
 }

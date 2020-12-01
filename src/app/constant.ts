@@ -12,10 +12,3 @@ export enum RouterLink {
     About = '/about',
     Community = '/community'
 }
-
-export enum Breakpoints{
-    Xs = 576,
-    Sm = 768,
-    Md = 992,
-    Lg = 1200,
-}

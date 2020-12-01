@@ -1,52 +1,61 @@
-@import 'theming';
+@import "theming";
 
 @include mat-core();
 
 $light-theme-background: map-get($light-theme, background);
+$light-theme-foreground: map-get($light-theme, foreground);
+
 $dark-theme-background: map-get($dark-theme, background);
+$dark-theme-foreground: map-get($dark-theme, foreground);
 
 body {
-    @extend .mat-typography;
+  @extend .mat-typography;
 
-    margin: 0;
-    height: 100%;
+  margin: 0;
+  height: 100%;
+}
+
+.mat-snack-bar-container {
+  color: map-get($dark-theme-foreground, text);
+  background: map-get($dark-theme-background, background);
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
 }
 
 .light-theme {
-    @include angular-material-theme($light-theme);
+  @include angular-material-theme($light-theme);
 
-    background-color: map-get($light-theme-background, background);
+  background-color: map-get($light-theme-background, background);
 }
 
 .dark-theme {
-    @include angular-material-theme($dark-theme);
+  @include angular-material-theme($dark-theme);
 
-    background-color: map-get($dark-theme-background, background);
+  background-color: map-get($dark-theme-background, background);
 }
 
 .mat-form-field.hidden-line {
-
-    .mat-form-field-underline,
-    .mat-form-field-outline {
-        display: none;
-    }
+  .mat-form-field-underline,
+  .mat-form-field-outline {
+    display: none;
+  }
 }
 
 .mat-form-field.mini {
-    .mat-form-field-wrapper {
-        padding-bottom: 0;
-        margin: 0;
-    }
+  .mat-form-field-wrapper {
+    padding-bottom: 0;
+    margin: 0;
+  }
 
-    .mat-form-field-outline~.mat-form-field-infix {
-        padding: 0;
-    }
+  .mat-form-field-outline ~ .mat-form-field-infix {
+    padding: 0;
+  }
 
-    .mat-form-field-underline {
-        bottom: 0;
-    }
+  .mat-form-field-underline {
+    bottom: 0;
+  }
 }
 
 .future {
-    display: none !important;
+  display: none !important;
 }
