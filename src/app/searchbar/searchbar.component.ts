@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { RouterLink } from '../constant';
 
 @Component({
   selector: 'searchbar',
@@ -13,6 +14,8 @@ export class SearchbarComponent implements OnInit {
   @Output() search = new EventEmitter<string>();
 
   constructor() { }
+
+  routerLink = RouterLink;
 
   ngOnInit(): void {
   }

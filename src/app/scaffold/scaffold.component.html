@@ -1,11 +1,32 @@
-<mat-toolbar>
-  <div class="home-button">
-    <button mat-icon-button>
-      <mat-icon svgIcon="logo"></mat-icon>
-    </button>
-  </div>
+<mat-toolbar color="primary" [attr.data-isSubPage]="isSubPage">
 
-  <searchbar [(keyword)]="keyword" (search)="searchPlan()"></searchbar>
+  <mat-toolbar-row class='nav-links'>
+    <button mat-icon-button [matMenuTriggerFor]="menu" class='sub-menu-button'>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <ng-template matMenuContent>
+        <a mat-menu-item [routerLink]="routerLink.Community">Community</a>
+        <a mat-menu-item [routerLink]="routerLink.About">About</a>
+      </ng-template>
+    </mat-menu>
+    <ul class='list-menu'>
+      <li><a [routerLink]="routerLink.Community">Community</a></li>
+      <li><a [routerLink]="routerLink.About">About</a></li>
+    </ul>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row class="home-button">
+    <button mat-icon-button mat-button [routerLink]="routerLink.Home">
+      <mat-icon svgIcon="logo"></mat-icon>
+      CoTeach
+    </button>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row>
+    <searchbar [(keyword)]="keyword" (search)="searchPlan()"></searchbar>
+  </mat-toolbar-row>
+
 </mat-toolbar>
 
-<router-outlet></router-outlet>
+<router-outlet (activate)="changeOfRoutes()"></router-outlet>

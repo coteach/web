@@ -1,14 +1,119 @@
-$sidenav-max-width: 330px;
+@import "../../theming";
 
 .mat-toolbar {
-  background-color: transparent;
+  .mat-toolbar-row {
+    justify-content: center;
+  }
 
-  padding: 8px;
-  z-index: 1;
+  // .mat-toolbar {
+  // background-color: transparent;
+
+  // padding: 8px;
+  // z-index: 1;
 
   .home-button {
     margin-left: 8px;
-    width: $sidenav-max-width;
+
+    .mat-button {
+      font-size: 1.5em;
+      font-weight: bold;
+      width: auto;
+      margin-top: -1em;
+    }
+
+    .mat-icon {
+      width: 60px;
+      height: 60px;
+    }
+  }
+
+  .nav-links {
+    justify-content: flex-start;
+
+    a {
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        font-size: 0.8em;
+        margin: 0 0.8em;
+      }
+    }
+  }
+
+  .list-menu {
+    display: flex;
+  }
+
+  .sub-menu-button {
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+::ng-deep .mat-menu-panel {
+  background-color: #ffffff;
+  @include mat-elevation(4);
+
+  a {
+    text-decoration: none;
+    color: #000000;
+    padding: 0 3em;
+
+    &:hover {
+      font-weight: bold;
+    }
+  }
+}
+
+@mixin shrink-nav {
+  flex-direction: row;
+
+  .mat-toolbar-row {
+    width: auto;
+
+    &:first-child {
+      padding-right: 0;
+    }
+
+    &:nth-child(3) {
+      flex: 1 1 auto;
+      justify-content: flex-start;
+    }
+  }
+
+  .home-button {
+    display: none;
+  }
+
+  .list-menu {
+    display: none;
+  }
+
+  .sub-menu-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.mat-toolbar[data-isSubPage="true"] {
+  @include shrink-nav;
+
+  .home-button {
+    display: flex;
+    margin: 0;
+
+    .mat-button {
+      font-size: 1.3em;
+      margin-top: 0;
+    }
 
     .mat-icon {
       width: 40px;
@@ -18,7 +123,7 @@ $sidenav-max-width: 330px;
 }
 
 :host-context(.handset) {
-  .home-button {
-    display: none;
-  }
+  .mat-toolbar {
+    @include shrink-nav;
+}
 }
