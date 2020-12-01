@@ -4,9 +4,12 @@ $background: map-get($light-theme, background);
 $foreground: map-get($light-theme, foreground);
 
 :host {
+  @include mat-elevation(4);
+
   font-size: 16px;
   height: 48px;
   max-width: 620px;
+  min-width: 300px;
   width: 100%;
 
   .mat-form-field {
@@ -16,6 +19,18 @@ $foreground: map-get($light-theme, foreground);
 }
 
 :host-context(.light-theme) {
-  background-color: map-get($background, background);
+  background-color: map-get($background, app-bar);
   color: map-get($foreground, text);
+}
+
+:host-context(.web) {
+  [handset] {
+    display: none;
+  }
+}
+
+:host-context(.handset) {
+  [web] {
+    display: none;
+  }
 }

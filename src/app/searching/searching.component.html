@@ -1,1 +1,3 @@
-<plan-list [dataSource]="planList"></plan-list>
+<mat-spinner *ngIf="loading"></mat-spinner>
+
+<plan-list *ngIf="notLoading" [dataSource]="planList"></plan-list>

@@ -1,0 +1,3 @@
+<body class="light-theme" [ngClass]="{'web' : isWeb | async, 'handset': !(isWeb | async)}">
+  <router-outlet></router-outlet>
+</body>
