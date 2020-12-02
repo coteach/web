@@ -1,9 +1,18 @@
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 
 $primary-colors: mat-palette($mat-blue);
 $accent-colors: mat-palette($mat-cyan);
 $light-theme: mat-light-theme($primary-colors, $accent-colors);
 $dark-theme: mat-dark-theme($primary-colors, $accent-colors);
+
+$xs: 576px;
+$sm: 768px;
+$md: 992px;
+$lg: 1200px;
+
+* {
+    box-sizing: border-box;
+}
 
 @mixin center-element($horizontal: true, $vertical: true) {
     display: flex;
@@ -21,7 +30,8 @@ $dark-theme: mat-dark-theme($primary-colors, $accent-colors);
     $default: (font-size: 14px,
             border-radius: 16px,
             min-height: 32px,
-            avatar-size: 24px);
+            avatar-size: 24px,
+        );
 
     $font-size: $new-font-size-px + 0px;
     $scale: $font-size / map-get($default, font-size);
@@ -36,5 +46,11 @@ $dark-theme: mat-dark-theme($primary-colors, $accent-colors);
             width: $avatar-size;
             height: $avatar-size;
         }
+    }
+}
+
+@mixin breakpoint($breakpoint) {
+    @media all and (max-width: $breakpoint) {
+        @content;
     }
 }
