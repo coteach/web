@@ -17,7 +17,7 @@ export class ScaffoldComponent {
 	isSubPage: boolean = true
 
 	changeOfRoutes():void{
-		this.isSubPage=this.router.url!==this.routerLink.Home&&!this.router.url.includes(this.routerLink.Search)
+		this.isSubPage=this.router.url!==this.routerLink.Home
 	}
 	searchPlan(): void {
 		this.router.navigate([RouterLink.Search], { queryParams: { q: this.keyword } });
