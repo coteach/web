@@ -1,1 +1,12 @@
-<p>community works!</p>
+
+<div class='backdrop'>
+  <div class='container'> 
+    <h1>Community</h1>
+    <h1>社群資源</h1>
+  
+    <mat-nav-list>
+      <a mat-list-item  *ngFor="let link of links" [href]="link.url"> {{ link.title }} </a>
+   </mat-nav-list>
+  </div>
+</div>
+
