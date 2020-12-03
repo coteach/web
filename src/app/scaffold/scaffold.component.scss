@@ -8,25 +8,18 @@
     justify-content: center;
   }
 
-  // .mat-toolbar {
-  // background-color: transparent;
-
-  // padding: 8px;
-  // z-index: 1;
-
   .home-button {
-    margin-left: 8px;
     .mat-button {
       font-size: 1.5em;
       font-weight: bold;
       width: auto;
-      margin-top: -1em;
-      transition: 0;
+      height: 60px;
+      transition: unset;
     }
     .mat-icon {
       width: 60px;
       height: 60px;
-      transition: 0;
+      transition: unset;
     }
   }
 
@@ -52,6 +45,7 @@
     display: none;
     justify-content: center;
     align-items: center;
+    margin-right: 8px;
   }
 }
 
@@ -73,7 +67,7 @@
   .mat-toolbar-row {
     width: auto;
     &:first-child {
-      padding-right: 0;
+      padding-right: unset;
     }
     &:nth-child(3) {
       flex: 1 1 auto;
@@ -90,6 +84,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 0;
   }
 }
 
@@ -101,6 +96,7 @@
     .mat-button {
       font-size: 1.3em;
       margin-top: 0;
+      height: 40px;
     }
     .mat-icon {
       width: 40px;

@@ -10,10 +10,13 @@
 }
 
 .backdrop {
-  height: 100%;
+  min-height: 100%;
   background-color: #2196f3;
   color: #ffffff;
   padding: 100px;
+  @include breakpoint($sm) {
+    padding: 100px 40px;
+  }
   h1,
   h2 {
     font-weight: 900;
@@ -22,14 +25,40 @@
     display: block;
     animation: show 0.5s linear;
     z-index: 2;
+    white-space: nowrap;
   }
   p {
     max-width: 600px;
     animation: show 0.5s linear;
     font-size: 1.5em;
     line-height: 1.5em;
-    word-break: break-all;
-    z-index: 2;
-    float: left;
+  }
+  .mat-list {
+    display: flex;
+    margin-bottom: 80px;
+    animation: show 1s linear;
+    @include breakpoint($sm) {
+      display: block;
+    }
+    .mat-list-item {
+      color: #ffffff;
+    }
+    .mat-icon {
+      height: 40px;
+      width: 40px;
+      color: #2196f3;
+      background-color: #ffffff;
+      padding: 0;
+      @include center-element;
+      &.email {
+        font-size: 30px;
+      }
+      &.form {
+        font-size: 15px;
+        font-weight: 900;
+        padding-bottom: 3px;
+        box-sizing: border-box;
+      }
+    }
   }
 }

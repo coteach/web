@@ -15,6 +15,10 @@ body {
   height: 100%;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .mat-snack-bar-container {
   color: map-get($dark-theme-foreground, text);
   background: map-get($dark-theme-background, background);
