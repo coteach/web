@@ -1,0 +1,26 @@
+@import "../../theming";
+
+.backdrop {
+  min-height: 100%;
+  background-color: $main-color;
+  color: #ffffff;
+  padding: 100px;
+  @include breakpoint($sm) {
+    padding: 100px 40px;
+  }
+  h1 {
+    font-weight: 900;
+    font-size: 5em;
+    line-height: 1em;
+    z-index: 2;
+    @include breakpoint($sm) {
+      font-size: 4em;
+    }
+  }
+  .mat-nav-list {
+    margin-top: 50px;
+    a {
+      color: #ffffff;
+    }
+  }
+}

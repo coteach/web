@@ -12,7 +12,7 @@
 
 .backdrop {
   min-height: 100%;
-  background-color: #2196f3;
+  background-color: $main-color;
   color: #ffffff;
   padding: 100px;
 
@@ -24,10 +24,8 @@
   h2 {
     font-weight: 900;
     font-size: 5em;
-    height: 1em;
-    display: block;
+    line-height: 1em;
     animation: show 0.5s linear;
-    z-index: 2;
     white-space: nowrap;
   }
 
@@ -63,7 +61,7 @@
     .mat-icon {
       height: 40px;
       width: 40px;
-      color: #2196f3;
+      color: $main-color;
       background-color: #ffffff;
       padding: 0;
       @include center-element;

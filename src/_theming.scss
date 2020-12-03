@@ -5,6 +5,8 @@ $accent-colors: mat-palette($mat-cyan);
 $light-theme: mat-light-theme($primary-colors, $accent-colors);
 $dark-theme: mat-dark-theme($primary-colors, $accent-colors);
 
+$main-color: #2196f3;
+
 $xs: 576px;
 $sm: 768px;
 $md: 992px;
