@@ -7,18 +7,18 @@
     <mat-menu #menu="matMenu">
       <ng-template matMenuContent>
         <a mat-menu-item [routerLink]="routerLink.Home">Home</a>
-        <a mat-menu-item [routerLink]="routerLink.About">About</a>
+        <a mat-menu-item [routerLink]="routerLink.About">About Us</a>
         <a mat-menu-item [routerLink]="routerLink.Community">Community</a>
       </ng-template>
     </mat-menu>
     <ul class='list-menu'>
+      <li><a [routerLink]="routerLink.About">About Us </a></li>
       <li><a [routerLink]="routerLink.Community">Community</a></li>
-      <li><a [routerLink]="routerLink.About">About</a></li>
     </ul>
   </mat-toolbar-row>
 
   <mat-toolbar-row class="home-button">
-    <button mat-icon-button mat-button [routerLink]="routerLink.Home">
+    <button mat-button [routerLink]="routerLink.Home">
       <mat-icon svgIcon="logo"></mat-icon>
       CoTeach
     </button>
