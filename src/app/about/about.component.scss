@@ -43,6 +43,13 @@
     .mat-list-item {
       color: #ffffff;
     }
+    a {
+      text-decoration: none;
+      color: #ffffff;
+      &:hover {
+        font-weight: 900;
+      }
+    }
     .mat-icon {
       height: 40px;
       width: 40px;
